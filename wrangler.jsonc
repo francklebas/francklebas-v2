@@ -9,5 +9,8 @@
   },
   // Domaine de recette. La zone francklebas.com doit être sur le même compte Cloudflare ;
   // wrangler crée l'entrée DNS au premier deploy.
-  "routes": [{ "pattern": "v2.francklebas.com", "custom_domain": true }]
+  "routes": [{ "pattern": "v2.francklebas.com", "custom_domain": true }],
+  "observability": {
+    "enabled": false
+  }
 }
