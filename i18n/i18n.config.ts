@@ -12,15 +12,15 @@ export default defineI18nConfig(() => ({
       },
       hero: {
         eyebrow: 'FRONTEND ARCHITECT — MARSEILLE · STOCKHOLM · BORDEAUX',
-        headline: 'Interfaces built like instruments — precise, durable, made to last.',
+        headline: 'Interfaces built like instruments — precise, maintainable, made to last.',
         subtitle: 'Designing frontend architecture for high-traffic products since 2008. Vue, React, TypeScript.',
         viewProjects: 'View projects',
       },
       cta: { downloadCV: 'Download CV' },
       home: {
         whatIdoHeading: 'What I do',
-        whatIdoBody: 'I design and build frontend architectures for products that need to scale. My focus is on performance, clean component design, and shipping code that lasts.',
-        stack: 'Stack',
+        whatIdoBody: 'I design and build frontend architectures for products that need to scale. My focus is on performance, clean component design, and writing code that lasts.',
+        stack: 'Outils & technologies',
       },
       sections: {
         selectedWork: '02 — SELECTED WORK',
@@ -33,7 +33,7 @@ export default defineI18nConfig(() => ({
         letsTalk: "Let's talk",
       },
       projects: {
-        portail: { role: 'Frontend Architect', desc: 'Platform for French freelancers and micro-entrepreneurs, serving 500k+ users.' },
+        portail: { role: 'Frontend Architect', desc: 'Platform for French freelancers and micro-entrepreneurs, serving more than 500 000 users.' },
         jobs: { role: 'Creator', desc: 'Job application tracker with auth and per-user data. Live demo — try it instantly, no account needed.' },
         resume: { role: 'Creator', desc: 'AI-powered resume builder that tailors resumes to job descriptions and exports polished PDFs. Live demo.' },
         fanny: { role: 'Creator', desc: 'Self-hosted voice assistant — wake word, speech-to-text, local pipeline. In progress.' },
@@ -43,9 +43,9 @@ export default defineI18nConfig(() => ({
       timeline: {
         nowLabel: 'Now',
         y2008: { role: 'First steps on the web', company: 'Freelance', desc: 'Started building websites — HTML, CSS, jQuery, and a lot of curiosity.' },
-        y2013: { role: 'Frontend Developer', company: 'Digital agencies', desc: 'Years shipping client sites and web apps, moving from jQuery to component-based frameworks.' },
+        y2013: { role: 'Frontend Developer', company: 'Digital agencies', desc: 'Years developing client websites and web applications, moving from jQuery to component-based frameworks.' },
         y2018: { role: 'Frontend Engineer', company: 'FDJ (Française des Jeux)', desc: 'High-traffic interfaces for a national gaming platform. React, NestJS.' },
-        y2022: { role: 'Frontend Architect', company: 'portail-autoentrepreneur.fr', desc: 'Frontend architecture for a platform serving 500k+ users. Vue 3, TypeScript, SCSS.' },
+        y2022: { role: 'Frontend Architect', company: 'portail-autoentrepreneur.fr', desc: 'Frontend architecture for a platform serving more than 500 000 users. Vue 3, TypeScript, SCSS.' },
         y2024: { role: 'Creator', company: 'AURORA Commerce', desc: 'Nuxt 4 e-commerce template with Stripe integration.' },
         now: { role: 'Open source & freelance', company: 'LLM Review Framework', desc: 'Building an LLM-powered code review tool as a pre-commit hook, usable with any LLM provider.' },
       },
@@ -72,15 +72,15 @@ export default defineI18nConfig(() => ({
       },
       hero: {
         eyebrow: 'ARCHITECTE FRONTEND — MARSEILLE · STOCKHOLM · BORDEAUX',
-        headline: 'Des interfaces conçues comme des instruments — précises, durables, faites pour durer.',
-        subtitle: "Je conçois l'architecture frontend de produits à fort trafic depuis 2008. Vue, React, TypeScript.",
+        headline: 'Des interfaces conçues comme des instruments — précises, maintainables, faites pour durer.',
+        subtitle: "Je conçois des architectures frontend pour des produits à fort trafic depuis 2008. Vue, React, TypeScript.",
         viewProjects: 'Voir les projets',
       },
       cta: { downloadCV: 'Télécharger le CV' },
       home: {
         whatIdoHeading: 'Ce que je fais',
-        whatIdoBody: "Je conçois et construis des architectures frontend pour des produits qui doivent passer à l'échelle. Mon obsession : la performance, un design de composants propre, et du code fait pour durer.",
-        stack: 'Stack',
+        whatIdoBody: "Je conçois et construis des architectures frontend pour des produits qui doivent passer à l'échelle. Mon obsession : la performance, la qualité des composants et du code fait pour durer.",
+        stack: 'Outils & technologies',
       },
       sections: {
         selectedWork: '02 — TRAVAUX CHOISIS',
@@ -93,7 +93,7 @@ export default defineI18nConfig(() => ({
         letsTalk: 'Parlons-en',
       },
       projects: {
-        portail: { role: 'Architecte Frontend', desc: 'Plateforme pour les indépendants et micro-entrepreneurs français, plus de 500k utilisateurs.' },
+        portail: { role: 'Architecte Frontend', desc: 'Plateforme pour les indépendants et micro-entrepreneurs français, plus de 500 000 utilisateurs.' },
         jobs: { role: 'Créateur', desc: 'Suivi de candidatures avec authentification et données par utilisateur. Démo live — testable en un clic, sans compte.' },
         resume: { role: 'Créateur', desc: "Générateur de CV par IA qui adapte le CV à l'offre d'emploi et exporte des PDF soignés. Démo live." },
         fanny: { role: 'Créateur', desc: "Assistant vocal auto-hébergé — mot d'activation, reconnaissance vocale, pipeline local. En cours." },
@@ -103,9 +103,9 @@ export default defineI18nConfig(() => ({
       timeline: {
         nowLabel: "Aujourd'hui",
         y2008: { role: 'Premiers pas sur le web', company: 'Freelance', desc: 'Premiers sites web — HTML, CSS, jQuery, et beaucoup de curiosité.' },
-        y2013: { role: 'Développeur Frontend', company: 'Agences digitales', desc: "Des années à livrer des sites clients et des web apps, de jQuery aux frameworks à composants." },
+        y2013: { role: 'Développeur Frontend', company: 'Agences digitales', desc: "Des années à concevoir et développer des sites et applications web, de jQuery aux frameworks à composants." },
         y2018: { role: 'Ingénieur Frontend', company: 'FDJ (Française des Jeux)', desc: 'Interfaces à fort trafic pour une plateforme de jeux nationale. React, NestJS.' },
-        y2022: { role: 'Architecte Frontend', company: 'portail-autoentrepreneur.fr', desc: "Architecture frontend d'une plateforme à 500k+ utilisateurs. Vue 3, TypeScript, SCSS." },
+        y2022: { role: 'Architecte Frontend', company: 'portail-autoentrepreneur.fr', desc: "Architecture frontend d'une plateforme de plus de 500 000 utilisateurs. Vue 3, TypeScript, SCSS." },
         y2024: { role: 'Créateur', company: 'AURORA Commerce', desc: 'Template e-commerce Nuxt 4 avec intégration Stripe.' },
         now: { role: 'Open source & freelance', company: 'LLM Review Framework', desc: "Développement d'un outil de revue de code par LLM en hook pre-commit, utilisable avec n'importe quel fournisseur LLM." },
       },

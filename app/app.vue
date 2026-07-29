@@ -6,9 +6,6 @@
 
 const { t, locale, setLocale } = useI18n()
 
-const accent = '#B87333'
-const muted = '#8FA8B2'
-
 // <html lang> suit la locale active.
 useHead({ htmlAttrs: { lang: locale } })
 
@@ -17,7 +14,6 @@ const page = ref<Page>('accueil')
 const showMap = ref(false)
 
 // Réglages repris des props du design (valeurs par défaut).
-const waveMotion = true
 const motifDensity = ref<'subtle' | 'moderate'>('moderate')
 const showCoordinates = computed(() => motifDensity.value !== 'subtle')
 
@@ -28,16 +24,6 @@ const nav = [
   { id: 'competences', key: 'skills', num: '04' },
   { id: 'contact', key: 'contact', num: '05' },
 ] as const
-
-function langStyle(code: string) {
-  return {
-    cursor: 'pointer',
-    fontSize: '12px',
-    letterSpacing: '1px',
-    fontWeight: locale.value === code ? 600 : 400,
-    color: locale.value === code ? accent : muted,
-  }
-}
 
 // Coordonnées de contact.
 const contact = {
@@ -115,48 +101,39 @@ const socials = [
 
 const stackChips = ['Vue 3', 'Nuxt 4', 'React', 'TypeScript', 'SCSS', 'Tailwind', 'Node.js', 'Bun']
 
-const waveWrapStyle = computed(() => ({
-  position: 'absolute' as const,
-  bottom: 0,
-  left: 0,
-  width: '100%',
-  filter: 'blur(14px)',
-  animation: waveMotion ? 'wavePulse 10s ease-in-out infinite' : 'none',
-}))
 </script>
 
 <template>
   <div class="root">
     <nav class="top">
-      <div style="display:flex;align-items:center;gap:10px;cursor:pointer;" @click="page = 'accueil'">
-        <span style="width:12px;height:12px;border:2px solid #B87333;border-radius:50%;display:flex;align-items:center;justify-content:center;">
-          <span style="width:4px;height:4px;background:#B87333;border-radius:50%;" />
-        </span>
-        <span style="font-size:13px;font-weight:600;letter-spacing:2px;">FRANCK LEBAS</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:32px;flex-wrap:wrap;">
-        <div
+      <button class="brand" type="button" @click="page = 'accueil'">
+        <span class="brand-mark"><span /></span>
+        <span class="brand-name">FRANCK LEBAS</span>
+      </button>
+      <div class="nav-list">
+        <button
           v-for="n in nav"
           :key="n.id"
           class="nav-item"
-          :style="{ display: 'flex', alignItems: 'center', cursor: 'pointer', fontSize: '14px', fontWeight: page === n.id ? 600 : 400, color: page === n.id ? accent : muted }"
+          :class="{ 'is-active': page === n.id }"
+          type="button"
           @click="page = n.id"
         >
-          <span style="color:#B87333;font-size:11px;margin-right:6px;">{{ n.num }}</span>{{ t(`nav.${n.key}`) }}
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span class="nav-item" :style="langStyle('en')" @click="setLocale('en')">EN</span>
-          <span style="color:rgba(143,168,178,0.4);font-size:12px;">/</span>
-          <span class="nav-item" :style="langStyle('fr')" @click="setLocale('fr')">FR</span>
+          <span class="nav-number">{{ n.num }}</span>{{ t(`nav.${n.key}`) }}
+        </button>
+        <div class="locale-switcher">
+          <button class="nav-item locale-button" :class="{ 'is-active': locale === 'en' }" type="button" @click="setLocale('en')">EN</button>
+          <span class="locale-separator">/</span>
+          <button class="nav-item locale-button" :class="{ 'is-active': locale === 'fr' }" type="button" @click="setLocale('fr')">FR</button>
         </div>
       </div>
     </nav>
 
     <!-- 01 — HOME -->
-    <div v-if="page === 'accueil'" class="page-enter" style="padding-top:96px;">
+    <div v-if="page === 'accueil'" class="page page-enter">
       <section class="hero pad-x">
-        <div :style="waveWrapStyle">
-          <svg width="100%" height="320" viewBox="0 0 800 320" preserveAspectRatio="none" style="display:block;">
+        <div class="wave-wrap">
+          <svg width="100%" height="320" viewBox="0 0 800 320" preserveAspectRatio="none" class="wave-svg">
             <defs>
               <linearGradient id="waveFade1" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stop-color="#8FA8B2" stop-opacity="0.35" />
@@ -168,160 +145,158 @@ const waveWrapStyle = computed(() => ({
             <path d="M0,320 L0,90 Q100,50 200,90 T400,90 T600,90 T800,90 L800,320 Z" fill="url(#waveFade1)" />
           </svg>
         </div>
-        <div style="position:relative;z-index:2;max-width:960px;">
-          <div style="font-size:13px;letter-spacing:3px;color:#B87333;font-weight:600;margin-bottom:20px;">{{ t('hero.eyebrow') }}</div>
-          <h1 class="fr" style="font-weight:500;font-size:clamp(40px,6vw,84px);line-height:1.05;margin:0;max-width:920px;">{{ t('hero.headline') }}</h1>
-          <p style="font-size:19px;color:#8FA8B2;max-width:640px;margin:28px 0 0;line-height:1.6;">{{ t('hero.subtitle') }}</p>
+        <div class="hero-content">
+          <div class="eyebrow hero-eyebrow">{{ t('hero.eyebrow') }}</div>
+          <h1 class="fr hero-title">{{ t('hero.headline') }}</h1>
+          <p class="hero-subtitle">{{ t('hero.subtitle') }}</p>
           <div
             v-if="showCoordinates"
-            style="font-size:13px;letter-spacing:1px;color:#B87333;margin-top:20px;cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:4px;"
+            class="coordinates"
             @click="showMap = true"
           >
             43.2965° N, 5.3698° E
           </div>
-          <div style="display:flex;gap:16px;margin-top:44px;flex-wrap:wrap;">
-            <div style="background:#B87333;color:#0B1D26;padding:14px 28px;font-weight:600;font-size:15px;cursor:pointer;border-radius:2px;" @click="page = 'projets'">{{ t('hero.viewProjects') }}</div>
-            <a :href="cvUrl" download style="border:1px solid #8FA8B2;color:#EDEEE9;padding:14px 28px;font-weight:500;font-size:15px;cursor:pointer;border-radius:2px;text-decoration:none;">{{ t('cta.downloadCV') }}</a>
+          <div class="actions">
+            <button class="button button-primary" type="button" @click="page = 'projets'">{{ t('hero.viewProjects') }}</button>
+            <a :href="cvUrl" download class="button button-secondary">{{ t('cta.downloadCV') }}</a>
           </div>
         </div>
       </section>
 
-      <section class="two-col pad-x" style="padding-top:100px;padding-bottom:140px;display:grid;grid-template-columns:1fr 1fr;gap:64px;">
+      <section class="two-col home-intro pad-x">
         <div>
-          <h2 class="fr" style="font-weight:500;font-size:32px;margin:0 0 20px;">{{ t('home.whatIdoHeading') }}</h2>
-          <p style="color:#8FA8B2;font-size:16px;line-height:1.75;margin:0;max-width:480px;">{{ t('home.whatIdoBody') }}</p>
+          <h2 class="fr home-title">{{ t('home.whatIdoHeading') }}</h2>
+          <p class="body-copy home-copy">{{ t('home.whatIdoBody') }}</p>
         </div>
         <div>
-          <h2 class="fr" style="font-weight:500;font-size:22px;margin:0 0 20px;color:#8FA8B2;">{{ t('home.stack') }}</h2>
-          <div style="display:flex;flex-wrap:wrap;gap:10px;">
-            <span v-for="chip in stackChips" :key="chip" style="border:1px solid rgba(143,168,178,0.3);padding:8px 16px;font-size:13px;border-radius:2px;color:#EDEEE9;">{{ chip }}</span>
+          <h2 class="fr stack-title">{{ t('home.stack') }}</h2>
+          <div class="chip-list">
+            <span v-for="chip in stackChips" :key="chip" class="chip chip-light">{{ chip }}</span>
           </div>
         </div>
       </section>
     </div>
 
     <!-- 02 — PROJECTS -->
-    <div v-else-if="page === 'projets'" class="page-enter" style="padding-top:96px;">
-      <header class="pad-x" style="padding-top:100px;padding-bottom:40px;">
-        <div style="font-size:13px;letter-spacing:3px;color:#B87333;font-weight:600;margin-bottom:16px;">{{ t('sections.selectedWork') }}</div>
-        <h2 class="fr" style="font-weight:500;font-size:56px;margin:0;">{{ t('sections.projects') }}</h2>
+    <div v-else-if="page === 'projets'" class="page page-enter">
+      <header class="page-header pad-x">
+        <div class="eyebrow">{{ t('sections.selectedWork') }}</div>
+        <h2 class="fr page-title">{{ t('sections.projects') }}</h2>
       </header>
-      <section class="two-col pad-x" style="padding-bottom:140px;display:grid;grid-template-columns:1fr 1fr;gap:32px;">
-        <div v-for="project in projects" :key="project.num" class="card" style="border:1px solid rgba(143,168,178,0.2);border-radius:4px;overflow:hidden;background:rgba(255,255,255,0.02);">
+      <section class="two-col projects-grid pad-x">
+        <article v-for="project in projects" :key="project.num" class="card">
           <div class="shot">Project screenshot</div>
-          <div style="padding:28px;">
-            <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:8px;">
-              <span class="fr" style="color:#B87333;font-size:15px;">{{ project.num }}</span>
-              <h3 class="fr" style="font-weight:500;font-size:24px;margin:0;">{{ project.title }}</h3>
+          <div class="card-body">
+            <div class="project-heading">
+              <span class="fr project-number">{{ project.num }}</span>
+              <h3 class="fr project-title">{{ project.title }}</h3>
             </div>
-            <div style="font-size:12px;letter-spacing:1.5px;color:#8FA8B2;text-transform:uppercase;margin-bottom:14px;">{{ project.role }}</div>
-            <p style="font-size:15px;color:#c8d2d6;line-height:1.6;margin:0 0 18px;">{{ project.desc }}</p>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;">
-              <span v-for="tech in project.stack" :key="tech" style="font-size:12px;border:1px solid rgba(143,168,178,0.3);padding:5px 12px;border-radius:2px;color:#8FA8B2;">{{ tech }}</span>
+            <div class="project-role">{{ project.role }}</div>
+            <p class="body-copy project-copy">{{ project.desc }}</p>
+            <div class="chip-list project-chips">
+              <span v-for="tech in project.stack" :key="tech" class="chip chip-muted">{{ tech }}</span>
             </div>
-            <a v-if="project.hasLink" :href="project.link" target="_blank" rel="noopener" style="color:#B87333;font-size:14px;text-decoration:none;">{{ project.linkLabel }} →</a>
+            <a v-if="project.hasLink" :href="project.link" target="_blank" rel="noopener" class="button project-link button-primary chip chip-muted">{{ project.linkLabel }} →</a>
           </div>
-        </div>
+        </article>
       </section>
     </div>
 
     <!-- 03 — EXPERIENCE -->
-    <div v-else-if="page === 'experience'" class="page-enter" style="padding-top:96px;">
-      <header class="pad-x" style="padding-top:100px;padding-bottom:40px;">
-        <div style="font-size:13px;letter-spacing:3px;color:#B87333;font-weight:600;margin-bottom:16px;">{{ t('sections.career') }}</div>
-        <h2 class="fr" style="font-weight:500;font-size:56px;margin:0;">{{ t('sections.experience') }}</h2>
+    <div v-else-if="page === 'experience'" class="page page-enter">
+      <header class="page-header pad-x">
+        <div class="eyebrow">{{ t('sections.career') }}</div>
+        <h2 class="fr page-title">{{ t('sections.experience') }}</h2>
       </header>
-      <section class="pad-x" style="max-width:820px;margin:0 auto;padding-bottom:140px;">
-        <div v-for="entry in timeline" :key="entry.year + entry.role" style="display:flex;gap:28px;padding-bottom:48px;">
-          <div class="fr" style="width:70px;flex-shrink:0;color:#B87333;font-size:18px;padding-top:2px;">{{ entry.year }}</div>
-          <div class="tl-line" style="width:20px;flex-shrink:0;border-left:2px solid rgba(143,168,178,0.25);" />
-          <div style="padding-bottom:8px;">
-            <h3 class="fr" style="font-weight:500;font-size:22px;margin:0 0 4px;">{{ entry.role }}</h3>
-            <div style="font-size:13px;color:#8FA8B2;letter-spacing:0.5px;margin-bottom:10px;">{{ entry.company }}</div>
-            <p style="font-size:15px;color:#c8d2d6;line-height:1.6;margin:0;max-width:560px;">{{ entry.desc }}</p>
+      <section class="timeline pad-x">
+        <div v-for="entry in timeline" :key="entry.year + entry.role" class="timeline-entry">
+          <div class="fr timeline-year">{{ entry.year }}</div>
+          <div class="tl-line" />
+          <div class="timeline-content">
+            <h3 class="fr timeline-title">{{ entry.role }}</h3>
+            <div class="timeline-company">{{ entry.company }}</div>
+            <p class="body-copy timeline-copy">{{ entry.desc }}</p>
           </div>
         </div>
       </section>
     </div>
 
     <!-- 04 — SKILLS -->
-    <div v-else-if="page === 'competences'" class="page-enter" style="padding-top:96px;">
-      <header class="pad-x" style="padding-top:100px;padding-bottom:40px;">
-        <div style="font-size:13px;letter-spacing:3px;color:#B87333;font-weight:600;margin-bottom:16px;">{{ t('sections.craft') }}</div>
-        <h2 class="fr" style="font-weight:500;font-size:56px;margin:0;">{{ t('sections.skills') }}</h2>
+    <div v-else-if="page === 'competences'" class="page page-enter">
+      <header class="page-header pad-x">
+        <div class="eyebrow">{{ t('sections.craft') }}</div>
+        <h2 class="fr page-title">{{ t('sections.skills') }}</h2>
       </header>
-      <section class="two-col pad-x" style="display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:960px;">
-        <div v-for="grp in skillGroups" :key="grp.group" style="border-left:2px solid #B87333;padding:6px 0 6px 20px;">
-          <h3 class="fr" style="font-weight:500;font-size:19px;margin:0 0 14px;color:#8FA8B2;">{{ grp.group }}</h3>
-          <div style="display:flex;flex-wrap:wrap;gap:10px;">
-            <span v-for="skill in grp.items" :key="skill" style="border:1px solid rgba(143,168,178,0.3);padding:7px 14px;font-size:13px;border-radius:2px;">{{ skill }}</span>
+      <section class="two-col skills-grid pad-x">
+        <div v-for="grp in skillGroups" :key="grp.group" class="skill-group">
+          <h3 class="fr skill-title">{{ grp.group }}</h3>
+          <div class="chip-list">
+            <span v-for="skill in grp.items" :key="skill" class="chip">{{ skill }}</span>
           </div>
         </div>
       </section>
-      <section class="pad-x" style="padding-top:100px;padding-bottom:140px;max-width:820px;">
-        <h3 class="fr" style="font-weight:500;font-size:26px;margin:0 0 24px;">{{ t('skills.writing') }}</h3>
+      <section class="writing pad-x">
+        <h3 class="fr writing-title">{{ t('skills.writing') }}</h3>
         <a
           v-for="post in writing"
           :key="post.link"
           :href="post.link"
           target="_blank"
           rel="noopener"
-          class="row-link"
-          style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid rgba(143,168,178,0.15);text-decoration:none;color:#EDEEE9;"
+          class="row-link writing-link"
         >
-          <span style="font-size:16px;">{{ post.title }}</span>
-          <span style="font-size:12px;color:#8FA8B2;letter-spacing:0.5px;white-space:nowrap;">{{ post.source }}</span>
+          <span>{{ post.title }}</span>
+          <span class="row-source">{{ post.source }}</span>
         </a>
       </section>
     </div>
 
     <!-- 05 — CONTACT -->
-    <div v-else-if="page === 'contact'" class="page-enter" style="padding-top:96px;">
-      <header class="pad-x" style="padding-top:100px;padding-bottom:40px;">
-        <div style="font-size:13px;letter-spacing:3px;color:#B87333;font-weight:600;margin-bottom:16px;">{{ t('sections.contactEyebrow') }}</div>
-        <h2 class="fr" style="font-weight:500;font-size:56px;margin:0;">{{ t('sections.letsTalk') }}</h2>
+    <div v-else-if="page === 'contact'" class="page page-enter">
+      <header class="page-header pad-x">
+        <div class="eyebrow">{{ t('sections.contactEyebrow') }}</div>
+        <h2 class="fr page-title">{{ t('sections.letsTalk') }}</h2>
       </header>
-      <section class="two-col pad-x" style="padding-bottom:140px;display:grid;grid-template-columns:1fr 1fr;gap:64px;max-width:1000px;">
+      <section class="two-col contact-content pad-x">
         <div>
-          <div style="margin-bottom:32px;">
-            <div style="font-size:12px;letter-spacing:1.5px;color:#8FA8B2;text-transform:uppercase;margin-bottom:8px;">{{ t('contact.email') }}</div>
-            <a :href="`mailto:${contact.email}`" class="fr row-link" style="color:#EDEEE9;font-size:20px;text-decoration:none;">{{ contact.email }}</a>
+          <div class="contact-detail">
+            <div class="label">{{ t('contact.email') }}</div>
+            <a :href="`mailto:${contact.email}`" class="fr row-link contact-link">{{ contact.email }}</a>
           </div>
-          <div style="margin-bottom:32px;">
-            <div style="font-size:12px;letter-spacing:1.5px;color:#8FA8B2;text-transform:uppercase;margin-bottom:8px;">{{ t('contact.phone') }}</div>
-            <a :href="`tel:${contact.phone.replace(/\s/g, '')}`" class="fr row-link" style="color:#EDEEE9;font-size:20px;text-decoration:none;">{{ contact.phone }}</a>
+          <div class="contact-detail">
+            <div class="label">{{ t('contact.phone') }}</div>
+            <a :href="`tel:${contact.phone.replace(/\s/g, '')}`" class="fr row-link contact-link">{{ contact.phone }}</a>
           </div>
-          <a :href="cvUrl" download style="background:#B87333;color:#0B1D26;padding:14px 28px;font-weight:600;font-size:15px;cursor:pointer;border-radius:2px;display:inline-block;text-decoration:none;">{{ t('cta.downloadCV') }}</a>
+          <a :href="cvUrl" download class="button button-primary">{{ t('cta.downloadCV') }}</a>
         </div>
         <div>
-          <div style="font-size:12px;letter-spacing:1.5px;color:#8FA8B2;text-transform:uppercase;margin-bottom:16px;">{{ t('contact.elsewhere') }}</div>
+          <div class="label elsewhere-label">{{ t('contact.elsewhere') }}</div>
           <a
             v-for="social in socials"
             :key="social.link"
             :href="social.link"
             target="_blank"
             rel="noopener"
-            class="row-link"
-            style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid rgba(143,168,178,0.15);text-decoration:none;color:#EDEEE9;font-size:16px;"
+            class="row-link social-link"
           >
-            <span>{{ social.label }}</span><span style="color:#B87333;">→</span>
+            <span>{{ social.label }}</span><span class="arrow">→</span>
           </a>
         </div>
       </section>
     </div>
 
     <!-- MAP MODAL -->
-    <div v-if="showMap" style="position:fixed;inset:0;background:rgba(11,29,38,0.85);z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;" @click="showMap = false">
-      <div style="background:#0B1D26;border:1px solid rgba(143,168,178,0.3);border-radius:4px;padding:20px;max-width:640px;width:100%;" @click.stop>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
-          <span class="fr" style="font-size:18px;color:#EDEEE9;">Marseille — 43.2965° N, 5.3698° E</span>
-          <span style="cursor:pointer;color:#8FA8B2;font-size:20px;" @click="showMap = false">×</span>
+    <div v-if="showMap" class="map-modal" @click="showMap = false">
+      <div class="map-dialog" @click.stop>
+        <div class="map-header">
+          <span class="fr map-title">Marseille — 43.2965° N, 5.3698° E</span>
+          <button class="map-close" type="button" aria-label="Close map" @click="showMap = false">×</button>
         </div>
-        <iframe src="https://www.google.com/maps?q=43.2965,5.3698&output=embed" width="100%" height="380" style="border:0;border-radius:2px;" loading="lazy" />
+        <iframe src="https://www.google.com/maps?q=43.2965,5.3698&output=embed" width="100%" height="380" class="map-frame" loading="lazy" />
       </div>
     </div>
 
-    <footer class="pad-x" style="padding-top:32px;padding-bottom:32px;border-top:1px solid rgba(143,168,178,0.15);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12px;color:#8FA8B2;">
+    <footer class="footer pad-x">
       <span>© 2026 Franck Lebas</span>
       <span>Marseille · Stockholm · Bordeaux</span>
     </footer>
@@ -329,12 +304,24 @@ const waveWrapStyle = computed(() => ({
 </template>
 
 <style>
+:root {
+  --color-bg: #0B1D26;
+  --color-text: #EDEEE9;
+  --color-accent: #B87333;
+  --color-muted: #8FA8B2;
+  --color-copy: #c8d2d6;
+  --line-subtle: rgba(143, 168, 178, 0.15);
+  --line-medium: rgba(143, 168, 178, 0.3);
+  --page-padding: 48px;
+}
+
 * { box-sizing: border-box; }
 html, body { margin: 0; }
+button { font: inherit; }
 
 .root {
-  background: #0B1D26;
-  color: #EDEEE9;
+  background: var(--color-bg);
+  color: var(--color-text);
   font-family: 'Space Grotesk', sans-serif;
   min-height: 100vh;
   position: relative;
@@ -352,13 +339,34 @@ html, body { margin: 0; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 48px;
+  padding: 20px var(--page-padding);
   background: rgba(11, 29, 38, 0.88);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(143, 168, 178, 0.15);
 }
 
-.pad-x { padding-left: 48px; padding-right: 48px; }
+.pad-x { padding-left: var(--page-padding); padding-right: var(--page-padding); }
+
+.page { padding-top: 96px; }
+
+.brand, .nav-item, .map-close {
+  border: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.brand, .nav-list, .locale-switcher, .nav-item, .brand-mark, .actions, .chip-list, .project-heading, .timeline-entry, .map-header, .footer { display: flex; }
+.brand { align-items: center; gap: 10px; cursor: pointer; padding: 0; }
+.brand-mark { width: 12px; height: 12px; align-items: center; justify-content: center; border: 2px solid var(--color-accent); border-radius: 50%; }
+.brand-mark span { width: 4px; height: 4px; background: var(--color-accent); border-radius: 50%; }
+.brand-name { font-size: 13px; font-weight: 600; letter-spacing: 2px; }
+.nav-list { align-items: center; gap: 32px; flex-wrap: wrap; }
+.nav-item { align-items: center; cursor: pointer; padding: 0; color: var(--color-muted); font-size: 14px; font-weight: 400; transition: color .2s ease; }
+.nav-item.is-active { color: var(--color-accent); font-weight: 600; }
+.nav-number { margin-right: 6px; color: var(--color-accent); font-size: 11px; }
+.locale-switcher { align-items: center; gap: 8px; }
+.locale-button { font-size: 12px; letter-spacing: 1px; }
+.locale-separator { color: rgba(143, 168, 178, .4); font-size: 12px; }
 
 .hero {
   position: relative;
@@ -369,10 +377,77 @@ html, body { margin: 0; }
   overflow: hidden;
 }
 
-.nav-item { transition: color 0.2s ease; }
+.wave-wrap { position: absolute; bottom: 0; left: 0; width: 100%; filter: blur(14px); animation: wavePulse 10s ease-in-out infinite; }
+.wave-svg { display: block; }
+.hero-content { position: relative; z-index: 2; max-width: 960px; }
+.eyebrow { margin-bottom: 16px; color: var(--color-accent); font-size: 13px; font-weight: 600; letter-spacing: 3px; }
+.hero-eyebrow { margin-bottom: 20px; }
+.hero-title { max-width: 920px; margin: 0; font-size: clamp(40px, 6vw, 84px); font-weight: 500; line-height: 1.05; }
+.hero-subtitle { max-width: 640px; margin: 28px 0 0; color: var(--color-muted); font-size: 19px; line-height: 1.6; }
+.coordinates { margin-top: 20px; color: var(--color-accent); cursor: pointer; font-size: 13px; letter-spacing: 1px; text-decoration: underline dotted; text-underline-offset: 4px; }
+.actions { flex-wrap: wrap; gap: 16px; margin-top: 44px; }
+.button { display: inline-block; border-radius: 2px; padding: 14px 28px; cursor: pointer; font-size: 15px; font-weight: 600; text-decoration: none; }
+.button-primary { border: 1px solid var(--color-accent); background: var(--color-accent); color: var(--color-bg); }
+.button-secondary { border: 1px solid var(--color-muted); color: var(--color-text); font-weight: 500; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; }
+.home-intro { gap: 64px; padding-top: 100px; padding-bottom: 140px; }
+.home-title { margin: 0 0 20px; font-size: 32px; font-weight: 500; }
+.stack-title { margin: 0 0 20px; color: var(--color-muted); font-size: 22px; font-weight: 500; }
+.body-copy { margin: 0; color: var(--color-copy); font-size: 15px; line-height: 1.6; }
+.home-copy { max-width: 480px; color: var(--color-muted); font-size: 16px; line-height: 1.75; }
+.chip-list { flex-wrap: wrap; gap: 10px; }
+.chip { border: 1px solid var(--line-medium); border-radius: 2px; padding: 7px 14px; font-size: 13px; }
+.chip-light { padding: 8px 16px; color: var(--color-text); }
+.chip-muted { padding: 5px 12px; color: var(--color-muted); font-size: 12px; }
+
+.page-header { padding-top: 100px; padding-bottom: 40px; }
+.page-title { margin: 0; font-size: 56px; font-weight: 500; }
+.projects-grid { gap: 32px; padding-bottom: 140px; }
+.card { overflow: hidden; border: 1px solid rgba(143, 168, 178, .2); border-radius: 4px; background: rgba(255, 255, 255, .02); }
+.card-body { padding: 28px; }
+.project-heading { align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.project-number { color: var(--color-accent); font-size: 15px; }
+.project-title { margin: 0; font-size: 24px; font-weight: 500; }
+.project-role, .label { margin-bottom: 14px; color: var(--color-muted); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; }
+.project-copy { margin-bottom: 18px; }
+.project-chips { gap: 8px; margin-bottom: 18px; }
+.project-link, .arrow { color: var(--color-bg); font-size: 14px; text-decoration: none; }
+
+.timeline { max-width: 820px; margin: 0 auto; padding-bottom: 140px; }
+.timeline-entry { gap: 28px; padding-bottom: 48px; }
+.timeline-year { width: 70px; flex-shrink: 0; padding-top: 2px; color: var(--color-accent); font-size: 18px; }
+.timeline-content { padding-bottom: 8px; }
+.timeline-title { margin: 0 0 4px; font-size: 22px; font-weight: 500; }
+.timeline-company { margin-bottom: 10px; color: var(--color-muted); font-size: 13px; letter-spacing: .5px; }
+.timeline-copy { max-width: 560px; }
+
+.skills-grid { max-width: 960px; gap: 28px; }
+.skill-group { border-left: 2px solid var(--color-accent); padding: 6px 0 6px 20px; }
+.skill-title { margin: 0 0 14px; color: var(--color-muted); font-size: 19px; font-weight: 500; }
+.writing { max-width: 820px; padding-top: 100px; padding-bottom: 140px; }
+.writing-title { margin: 0 0 24px; font-size: 26px; font-weight: 500; }
+.row-link { color: var(--color-text); text-decoration: none; transition: color .2s ease; }
+.writing-link, .social-link { align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line-subtle); padding: 16px 0; }
+.writing-link { font-size: 16px; }
+.row-source { color: var(--color-muted); font-size: 12px; letter-spacing: .5px; white-space: nowrap; }
+
+.contact-content { max-width: 1000px; gap: 64px; padding-bottom: 140px; }
+.contact-detail { margin-bottom: 32px; }
+.contact-detail .label { margin-bottom: 8px; }
+.contact-link { font-size: 20px; }
+.elsewhere-label { margin-bottom: 16px; }
+.social-link { align-items: center; font-size: 16px; }
+
+.map-modal { position: fixed; z-index: 200; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(11, 29, 38, .85); }
+.map-dialog { width: 100%; max-width: 640px; border: 1px solid var(--line-medium); border-radius: 4px; padding: 20px; background: var(--color-bg); }
+.map-header { align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.map-title { font-size: 18px; }
+.map-close { cursor: pointer; color: var(--color-muted); font-size: 20px; }
+.map-frame { border: 0; border-radius: 2px; }
+.footer { justify-content: space-between; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--line-subtle); padding-top: 32px; padding-bottom: 32px; color: var(--color-muted); font-size: 12px; }
 
 .card { transition: transform 0.3s ease, border-color 0.3s ease; }
-.card:hover { transform: translateY(-6px); border-color: #B87333; }
+.card:hover { transform: translateY(-6px); border-color: var(--color-accent); }
 
 .shot {
   width: 100%;
@@ -381,13 +456,12 @@ html, body { margin: 0; }
   align-items: center;
   justify-content: center;
   background: rgba(143, 168, 178, 0.08);
-  color: #8FA8B2;
+  color: var(--color-muted);
   font-size: 13px;
   letter-spacing: 1px;
 }
 
-.row-link { transition: color 0.2s ease; }
-.row-link:hover { color: #B87333 !important; }
+.row-link:hover { color: var(--color-accent); }
 
 .tl-line { position: relative; }
 .tl-line::before {
@@ -398,7 +472,7 @@ html, body { margin: 0; }
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #B87333;
+  background: var(--color-accent);
 }
 
 .page-enter { animation: swellIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
@@ -414,12 +488,13 @@ html, body { margin: 0; }
 
 /* Mobile : les grilles deux colonnes s'empilent, on resserre les marges. */
 @media (max-width: 720px) {
-  .two-col { grid-template-columns: 1fr !important; }
-  .top { padding: 16px 20px !important; }
-  .pad-x { padding-left: 20px !important; padding-right: 20px !important; }
+  :root { --page-padding: 20px; }
+  .two-col { grid-template-columns: 1fr; }
+  .top { padding: 16px 20px; }
+  .nav-list { gap: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-enter { animation: none; }
+  .page-enter, .wave-wrap { animation: none; }
 }
 </style>
