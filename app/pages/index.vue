@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // CV servi statiquement (edge Cloudflare = CDN). Déposer le PDF dans public/cv.pdf.
 const cvUrl = "/cv.pdf";
+const showMap = ref(false);
 const stackChips = [
   "Vue 3",
   "Nuxt 4",
@@ -11,6 +12,9 @@ const stackChips = [
   "Node.js",
   "Bun",
 ];
+// Réglages repris des props du design (valeurs par défaut).
+const motifDensity = ref<"subtle" | "moderate">("moderate");
+const showCoordinates = computed(() => motifDensity.value !== "subtle");
 </script>
 
 <template>

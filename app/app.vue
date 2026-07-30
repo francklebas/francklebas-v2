@@ -27,41 +27,7 @@ const contact = {
 // Corrections vs design d'origine : Resume AI = Nuxt/Mistral (pas Next/OpenAI) + lien démo ;
 // jobs ajouté (démo live) ; Fanny AI sans lien (non exposé).
 
-const skillMeta = [
-  { key: "core", items: ["Vue 3", "React", "TypeScript"] },
-  { key: "meta", items: ["Nuxt 4"] },
-  { key: "styling", items: ["SCSS", "Tailwind"] },
-  { key: "runtime", items: ["Node.js", "Bun"] },
-] as const;
-
-const skillGroups = computed(() =>
-  skillMeta.map((g) => ({ group: t(`skills.${g.key}`), items: g.items })),
-);
-
 // Titres d'articles / réseaux : noms propres, non traduits.
-const writing = [
-  {
-    title: "Frontend best practices",
-    source: "Medium",
-    link: "https://medium.com/codex/front-end-best-practices-666f09a4dfd",
-  },
-  {
-    title: "TDD for frontend developers",
-    source: "Medium",
-    link: "https://wearelion.medium.com/fast-and-reliable-coding-through-tdd-1b50c8ad0028",
-  },
-  {
-    title: "React 16.3 and the new Context API",
-    source: "Putain de Code",
-    link: "https://putaindecode.io/articles/react-16-3-et-la-nouvelle-api-context",
-  },
-  {
-    title: "AURORA Commerce articles",
-    source: "DEV Community",
-    link: "https://dev.to/francklebas",
-  },
-];
-
 const socials = [
   { label: "LinkedIn", link: "https://linkedin.com/in/francklebas" },
   { label: "GitHub", link: "https://github.com/francklebas" },
@@ -72,38 +38,6 @@ const socials = [
 
 <template>
   <div class="root">
-    <!-- 04 — SKILLS -->
-    <!--<div v-else-if="page === 'competences'" class="page page-enter">
-      <header class="page-header pad-x">
-        <div class="eyebrow">{{ t("sections.craft") }}</div>
-        <h2 class="fr page-title">{{ t("sections.skills") }}</h2>
-      </header>
-      <section class="two-col skills-grid pad-x">
-        <div v-for="grp in skillGroups" :key="grp.group" class="skill-group">
-          <h3 class="fr skill-title">{{ grp.group }}</h3>
-          <div class="chip-list">
-            <span v-for="skill in grp.items" :key="skill" class="chip">{{
-              skill
-            }}</span>
-          </div>
-        </div>
-      </section>
-      <section class="writing pad-x">
-        <h3 class="fr writing-title">{{ t("skills.writing") }}</h3>
-        <a
-          v-for="post in writing"
-          :key="post.link"
-          :href="post.link"
-          target="_blank"
-          rel="noopener"
-          class="row-link writing-link"
-        >
-          <span>{{ post.title }}</span>
-          <span class="row-source">{{ post.source }}</span>
-        </a>
-      </section>
-    </div>-->
-
     <!-- 05 — CONTACT -->
     <!--<div v-else-if="page === 'contact'" class="page page-enter">
       <header class="page-header pad-x">
@@ -227,11 +161,6 @@ button {
   background: rgba(11, 29, 38, 0.88);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(143, 168, 178, 0.15);
-}
-
-.pad-x {
-  padding-left: var(--page-padding);
-  padding-right: var(--page-padding);
 }
 
 .page {
@@ -503,40 +432,6 @@ button {
   text-decoration: none;
 }
 
-.timeline {
-  max-width: 820px;
-  margin: 0 auto;
-  padding-bottom: 140px;
-}
-.timeline-entry {
-  gap: 28px;
-  padding-bottom: 48px;
-}
-.timeline-year {
-  width: 70px;
-  flex-shrink: 0;
-  padding-top: 2px;
-  color: var(--color-accent);
-  font-size: 18px;
-}
-.timeline-content {
-  padding-bottom: 8px;
-}
-.timeline-title {
-  margin: 0 0 4px;
-  font-size: 22px;
-  font-weight: 500;
-}
-.timeline-company {
-  margin-bottom: 10px;
-  color: var(--color-muted);
-  font-size: 13px;
-  letter-spacing: 0.5px;
-}
-.timeline-copy {
-  max-width: 560px;
-}
-
 .skills-grid {
   max-width: 960px;
   gap: 28px;
@@ -551,31 +446,10 @@ button {
   font-size: 19px;
   font-weight: 500;
 }
-.writing {
-  max-width: 820px;
-  padding-top: 100px;
-  padding-bottom: 140px;
-}
-.writing-title {
-  margin: 0 0 24px;
-  font-size: 26px;
-  font-weight: 500;
-}
 .row-link {
   color: var(--color-text);
   text-decoration: none;
   transition: color 0.2s ease;
-}
-.writing-link,
-.social-link {
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  border-bottom: 1px solid var(--line-subtle);
-  padding: 16px 0;
-}
-.writing-link {
-  font-size: 16px;
 }
 .row-source {
   color: var(--color-muted);

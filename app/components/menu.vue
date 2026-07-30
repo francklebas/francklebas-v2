@@ -26,7 +26,7 @@ const nav = [
           class="nav-item"
         >
           <span class="nav-number">{{ n.num }}</span
-          >{{ index === 0 ? "Accuil" : $t(`nav.${n.key}`) }}
+          >{{ index === 0 ? "Accueil" : $t(`nav.${n.key}`) }}
         </NuxtLink>
 
         <div class="locale-switcher">
