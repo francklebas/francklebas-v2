@@ -149,43 +149,6 @@ const socials = [
 
 <template>
   <div class="root">
-    <!-- 02 — PROJECTS -->
-    <!--<div v-else-if="page === 'projets'" class="page page-enter">
-      <header class="page-header pad-x">
-        <div class="eyebrow">{{ t("sections.selectedWork") }}</div>
-        <h2 class="fr page-title">{{ t("sections.projects") }}</h2>
-      </header>
-      <section class="two-col projects-grid pad-x">
-        <article v-for="project in projects" :key="project.num" class="card">
-          <div class="shot">Project screenshot</div>
-          <div class="card-body">
-            <div class="project-heading">
-              <span class="fr project-number">{{ project.num }}</span>
-              <h3 class="fr project-title">{{ project.title }}</h3>
-            </div>
-            <div class="project-role">{{ project.role }}</div>
-            <p class="body-copy project-copy">{{ project.desc }}</p>
-            <div class="chip-list project-chips">
-              <span
-                v-for="tech in project.stack"
-                :key="tech"
-                class="chip chip-muted"
-                >{{ tech }}</span
-              >
-            </div>
-            <a
-              v-if="project.hasLink"
-              :href="project.link"
-              target="_blank"
-              rel="noopener"
-              class="button project-link button-primary chip chip-muted"
-              >{{ project.linkLabel }} →</a
-            >
-          </div>
-        </article>
-      </section>
-    </div>-->
-
     <!-- 03 — EXPERIENCE -->
     <!--<div v-else-if="page === 'experience'" class="page page-enter">
       <header class="page-header pad-x">
