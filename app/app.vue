@@ -17,14 +17,6 @@ const showMap = ref(false);
 const motifDensity = ref<"subtle" | "moderate">("moderate");
 const showCoordinates = computed(() => motifDensity.value !== "subtle");
 
-const nav = [
-  { id: "accueil", key: "home", num: "01" },
-  { id: "projets", key: "projects", num: "02" },
-  { id: "experience", key: "experience", num: "03" },
-  { id: "competences", key: "skills", num: "04" },
-  { id: "contact", key: "contact", num: "05" },
-] as const;
-
 // Coordonnées de contact.
 const contact = {
   email: "francklebas@ik.me",
@@ -171,44 +163,7 @@ const stackChips = [
 
 <template>
   <div class="root">
-    <nav class="top">
-      <button class="brand" type="button" @click="page = 'accueil'">
-        <span class="brand-mark"><span /></span>
-        <span class="brand-name">FRANCK LEBAS</span>
-      </button>
-      <div class="nav-list">
-        <button
-          v-for="n in nav"
-          :key="n.id"
-          class="nav-item"
-          :class="{ 'is-active': page === n.id }"
-          type="button"
-          @click="page = n.id"
-        >
-          <span class="nav-number">{{ n.num }}</span
-          >{{ t(`nav.${n.key}`) }}
-        </button>
-        <div class="locale-switcher">
-          <button
-            class="nav-item locale-button"
-            :class="{ 'is-active': locale === 'en' }"
-            type="button"
-            @click="setLocale('en')"
-          >
-            EN
-          </button>
-          <span class="locale-separator">/</span>
-          <button
-            class="nav-item locale-button"
-            :class="{ 'is-active': locale === 'fr' }"
-            type="button"
-            @click="setLocale('fr')"
-          >
-            FR
-          </button>
-        </div>
-      </div>
-    </nav>
+    <Menu />
 
     <!-- 01 — HOME -->
     <div v-if="page === 'accueil'" class="page page-enter">
