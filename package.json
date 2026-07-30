@@ -19,6 +19,7 @@
   "devDependencies": {
     "@nuxt/devtools": "^3.4.0",
     "prettier": "^3.9.6",
+    "sass": "^1.102.0",
     "typescript": "~5.8.0",
     "vue-tsc": "^2.2.0"
   }

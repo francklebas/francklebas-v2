@@ -12,16 +12,21 @@ const nav = [
 <template>
   <div>
     <nav class="top">
-      <NuxtLink class="brand" to="`/`">
+      <NuxtLink class="nav-item" active-class="is-active" to="/">
         <span class="nav-number">01</span>{{ t(`nav.home`) }}
         Accueil
       </NuxtLink>
       <span class="brand-mark"><span /></span>
       <span class="brand-name">FRANCK LEBAS</span>
       <div class="nav-list">
-        <NuxtLink v-for="n in nav" :key="n.id" :to="`/${n.key}`">
+        <NuxtLink
+          v-for="(n, index) in nav"
+          :key="n.id"
+          :to="`${n.key === '' ? '/' : `/${n.key}`}`"
+          class="nav-item"
+        >
           <span class="nav-number">{{ n.num }}</span
-          ><a class="nav-item">{{ $t(`nav.${n.key}`) }}</a>
+          >{{ index === 0 ? "Accuil" : $t(`nav.${n.key}`) }}
         </NuxtLink>
 
         <div class="locale-switcher">
@@ -48,7 +53,7 @@ const nav = [
   </div>
 </template>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .nav-list {
   display: flex;
 }
@@ -62,9 +67,11 @@ const nav = [
   font-weight: 400;
   padding: 0;
   transition: color 0.2s ease;
-}
-a {
-  color: inherit;
   text-decoration: none;
+  &:hover,
+  &.is-active {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
 }
 </style>

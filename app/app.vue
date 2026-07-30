@@ -23,9 +23,6 @@ const contact = {
   phone: "+33 7 45 65 51 08",
 };
 
-// CV servi statiquement (edge Cloudflare = CDN). Déposer le PDF dans public/cv.pdf.
-const cvUrl = "/cv.pdf";
-
 // Métadonnées non traduisibles (noms propres, stack, liens) ; rôle + description via i18n.
 // Corrections vs design d'origine : Resume AI = Nuxt/Mistral (pas Next/OpenAI) + lien démo ;
 // jobs ajouté (démo live) ; Fanny AI sans lien (non exposé).
@@ -148,95 +145,12 @@ const socials = [
   { label: "DEV.to", link: "https://dev.to/francklebas" },
   { label: "francklebas.com", link: "https://francklebas.com" },
 ];
-
-const stackChips = [
-  "Vue 3",
-  "Nuxt 4",
-  "React",
-  "TypeScript",
-  "SCSS",
-  "Tailwind",
-  "Node.js",
-  "Bun",
-];
 </script>
 
 <template>
   <div class="root">
-    <Menu />
-
-    <!-- 01 — HOME -->
-    <div v-if="page === 'accueil'" class="page page-enter">
-      <section class="hero pad-x">
-        <div class="wave-wrap">
-          <svg
-            width="100%"
-            height="320"
-            viewBox="0 0 800 320"
-            preserveAspectRatio="none"
-            class="wave-svg"
-          >
-            <defs>
-              <linearGradient id="waveFade1" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#8FA8B2" stop-opacity="0.35" />
-                <stop offset="35%" stop-color="#8FA8B2" stop-opacity="0.16" />
-                <stop offset="70%" stop-color="#8FA8B2" stop-opacity="0.05" />
-                <stop offset="100%" stop-color="#8FA8B2" stop-opacity="0" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M0,320 L0,90 Q100,50 200,90 T400,90 T600,90 T800,90 L800,320 Z"
-              fill="url(#waveFade1)"
-            />
-          </svg>
-        </div>
-        <div class="hero-content">
-          <div class="eyebrow hero-eyebrow">{{ t("hero.eyebrow") }}</div>
-          <h1 class="fr hero-title">{{ t("hero.headline") }}</h1>
-          <p class="hero-subtitle">{{ t("hero.subtitle") }}</p>
-          <div
-            v-if="showCoordinates"
-            class="coordinates"
-            @click="showMap = true"
-          >
-            43.2965° N, 5.3698° E
-          </div>
-          <div class="actions">
-            <button
-              class="button button-primary"
-              type="button"
-              @click="page = 'projets'"
-            >
-              {{ t("hero.viewProjects") }}
-            </button>
-            <a :href="cvUrl" download class="button button-secondary">{{
-              t("cta.downloadCV")
-            }}</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="two-col home-intro pad-x">
-        <div>
-          <h2 class="fr home-title">{{ t("home.whatIdoHeading") }}</h2>
-          <p class="body-copy home-copy">{{ t("home.whatIdoBody") }}</p>
-        </div>
-        <div>
-          <h2 class="fr stack-title">{{ t("home.stack") }}</h2>
-          <div class="chip-list">
-            <span
-              v-for="chip in stackChips"
-              :key="chip"
-              class="chip chip-light"
-              >{{ chip }}</span
-            >
-          </div>
-        </div>
-      </section>
-    </div>
-
     <!-- 02 — PROJECTS -->
-    <div v-else-if="page === 'projets'" class="page page-enter">
+    <!--<div v-else-if="page === 'projets'" class="page page-enter">
       <header class="page-header pad-x">
         <div class="eyebrow">{{ t("sections.selectedWork") }}</div>
         <h2 class="fr page-title">{{ t("sections.projects") }}</h2>
@@ -270,10 +184,10 @@ const stackChips = [
           </div>
         </article>
       </section>
-    </div>
+    </div>-->
 
     <!-- 03 — EXPERIENCE -->
-    <div v-else-if="page === 'experience'" class="page page-enter">
+    <!--<div v-else-if="page === 'experience'" class="page page-enter">
       <header class="page-header pad-x">
         <div class="eyebrow">{{ t("sections.career") }}</div>
         <h2 class="fr page-title">{{ t("sections.experience") }}</h2>
@@ -293,10 +207,10 @@ const stackChips = [
           </div>
         </div>
       </section>
-    </div>
+    </div>-->
 
     <!-- 04 — SKILLS -->
-    <div v-else-if="page === 'competences'" class="page page-enter">
+    <!--<div v-else-if="page === 'competences'" class="page page-enter">
       <header class="page-header pad-x">
         <div class="eyebrow">{{ t("sections.craft") }}</div>
         <h2 class="fr page-title">{{ t("sections.skills") }}</h2>
@@ -325,10 +239,10 @@ const stackChips = [
           <span class="row-source">{{ post.source }}</span>
         </a>
       </section>
-    </div>
+    </div>-->
 
     <!-- 05 — CONTACT -->
-    <div v-else-if="page === 'contact'" class="page page-enter">
+    <!--<div v-else-if="page === 'contact'" class="page page-enter">
       <header class="page-header pad-x">
         <div class="eyebrow">{{ t("sections.contactEyebrow") }}</div>
         <h2 class="fr page-title">{{ t("sections.letsTalk") }}</h2>
@@ -370,10 +284,10 @@ const stackChips = [
           </a>
         </div>
       </section>
-    </div>
+    </div>-->
 
     <!-- MAP MODAL -->
-    <div v-if="showMap" class="map-modal" @click="showMap = false">
+    <!--<div v-if="showMap" class="map-modal" @click="showMap = false">
       <div class="map-dialog" @click.stop>
         <div class="map-header">
           <span class="fr map-title">Marseille — 43.2965° N, 5.3698° E</span>
@@ -394,12 +308,10 @@ const stackChips = [
           loading="lazy"
         />
       </div>
-    </div>
-
-    <footer class="footer pad-x">
-      <span>© 2026 Franck Lebas</span>
-      <span>Marseille · Stockholm · Bordeaux</span>
-    </footer>
+    </div>-->
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
 
@@ -631,16 +543,7 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.home-intro {
-  gap: 64px;
-  padding-top: 100px;
-  padding-bottom: 140px;
-}
-.home-title {
-  margin: 0 0 20px;
-  font-size: 32px;
-  font-weight: 500;
-}
+
 .stack-title {
   margin: 0 0 20px;
   color: var(--color-muted);
