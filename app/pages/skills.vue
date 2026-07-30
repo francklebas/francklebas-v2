@@ -1,5 +1,44 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { t, locale, setLocale } = useI18n();
+const timelineMeta = [
+  { key: "y2008", year: "2008" },
+  { key: "y2013", year: "2013" },
+  { key: "y2018", year: "2018" },
+  { key: "y2022", year: "2022" },
+  { key: "y2024", year: "2024" },
+  { key: "now", year: "" },
+] as const;
+
+const timeline = computed(() =>
+  timelineMeta.map((e) => ({
+    year: e.key === "now" ? t("timeline.nowLabel") : e.year,
+    role: t(`timeline.${e.key}.role`),
+    company: t(`timeline.${e.key}.company`),
+    desc: t(`timeline.${e.key}.desc`),
+  })),
+);
+</script>
 
 <template>
-  <div><h1>Main Title</h1></div>
+  <div class="page page-enter">
+    <header class="page-header pad-x">
+      <div class="eyebrow">{{ t("sections.career") }}</div>
+      <h2 class="fr page-title">{{ t("sections.experience") }}</h2>
+    </header>
+    <section class="timeline pad-x">
+      <div
+        v-for="entry in timeline"
+        :key="entry.year + entry.role"
+        class="timeline-entry"
+      >
+        <div class="fr timeline-year">{{ entry.year }}</div>
+        <div class="tl-line" />
+        <div class="timeline-content">
+          <h3 class="fr timeline-title">{{ entry.role }}</h3>
+          <div class="timeline-company">{{ entry.company }}</div>
+          <p class="body-copy timeline-copy">{{ entry.desc }}</p>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>

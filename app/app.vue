@@ -26,83 +26,6 @@ const contact = {
 // Métadonnées non traduisibles (noms propres, stack, liens) ; rôle + description via i18n.
 // Corrections vs design d'origine : Resume AI = Nuxt/Mistral (pas Next/OpenAI) + lien démo ;
 // jobs ajouté (démo live) ; Fanny AI sans lien (non exposé).
-const projectMeta = [
-  {
-    key: "portail",
-    num: "01",
-    title: "Portail Autoentrepreneur",
-    stack: ["Vue 3", "TypeScript", "SCSS"],
-    link: "https://portail-autoentrepreneur.fr",
-    linkLabel: "portail-autoentrepreneur.fr",
-  },
-  {
-    key: "jobs",
-    num: "02",
-    title: "Suivi de candidatures",
-    stack: ["Nuxt 4", "TypeScript", "Supabase"],
-    link: "https://jobs.francklebas.com",
-    linkLabel: "jobs.francklebas.com",
-  },
-  {
-    key: "resume",
-    num: "03",
-    title: "Resume AI",
-    stack: ["Nuxt 4", "TypeScript", "Mistral AI", "Cloudflare"],
-    link: "https://resume.francklebas.com",
-    linkLabel: "resume.francklebas.com",
-  },
-  {
-    key: "fanny",
-    num: "04",
-    title: "Fanny AI",
-    stack: ["Python", "Docker"],
-    link: "",
-    linkLabel: "",
-  },
-  {
-    key: "aurora",
-    num: "05",
-    title: "AURORA Commerce",
-    stack: ["Nuxt 4", "Stripe"],
-    link: "https://aurora.francklebas.com",
-    linkLabel: "aurora.francklebas.com",
-  },
-  {
-    key: "llm",
-    num: "06",
-    title: "LLM Review Framework",
-    stack: ["Node.js", "CLI", "LLM"],
-    link: "https://github.com/francklebas/llm-review-framework",
-    linkLabel: "github.com/francklebas",
-  },
-] as const;
-
-const projects = computed(() =>
-  projectMeta.map((p) => ({
-    ...p,
-    role: t(`projects.${p.key}.role`),
-    desc: t(`projects.${p.key}.desc`),
-    hasLink: !!p.link,
-  })),
-);
-
-const timelineMeta = [
-  { key: "y2008", year: "2008" },
-  { key: "y2013", year: "2013" },
-  { key: "y2018", year: "2018" },
-  { key: "y2022", year: "2022" },
-  { key: "y2024", year: "2024" },
-  { key: "now", year: "" },
-] as const;
-
-const timeline = computed(() =>
-  timelineMeta.map((e) => ({
-    year: e.key === "now" ? t("timeline.nowLabel") : e.year,
-    role: t(`timeline.${e.key}.role`),
-    company: t(`timeline.${e.key}.company`),
-    desc: t(`timeline.${e.key}.desc`),
-  })),
-);
 
 const skillMeta = [
   { key: "core", items: ["Vue 3", "React", "TypeScript"] },
@@ -149,29 +72,6 @@ const socials = [
 
 <template>
   <div class="root">
-    <!-- 03 — EXPERIENCE -->
-    <!--<div v-else-if="page === 'experience'" class="page page-enter">
-      <header class="page-header pad-x">
-        <div class="eyebrow">{{ t("sections.career") }}</div>
-        <h2 class="fr page-title">{{ t("sections.experience") }}</h2>
-      </header>
-      <section class="timeline pad-x">
-        <div
-          v-for="entry in timeline"
-          :key="entry.year + entry.role"
-          class="timeline-entry"
-        >
-          <div class="fr timeline-year">{{ entry.year }}</div>
-          <div class="tl-line" />
-          <div class="timeline-content">
-            <h3 class="fr timeline-title">{{ entry.role }}</h3>
-            <div class="timeline-company">{{ entry.company }}</div>
-            <p class="body-copy timeline-copy">{{ entry.desc }}</p>
-          </div>
-        </div>
-      </section>
-    </div>-->
-
     <!-- 04 — SKILLS -->
     <!--<div v-else-if="page === 'competences'" class="page page-enter">
       <header class="page-header pad-x">
