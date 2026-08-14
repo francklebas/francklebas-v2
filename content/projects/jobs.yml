@@ -1,0 +1,18 @@
+key: jobs
+num: "02"
+title: Suivi de candidatures
+stack:
+  - Nuxt 4
+  - TypeScript
+  - Supabase
+link: https://jobs.francklebas.com
+linkLabel:
+  en: "View the demo"
+  fr: "Voir la démo"
+role:
+  en: Creator
+  fr: Créateur
+desc:
+  en: "Job application tracker with auth and per-user data. Free account, live demo."
+  fr: "Suivi de candidatures avec authentification et données par utilisateur. Compte gratuit, démo live."
+hasLanding: true

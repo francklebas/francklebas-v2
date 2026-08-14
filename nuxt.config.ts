@@ -3,7 +3,16 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
 
-  modules: ["@nuxtjs/i18n"],
+  modules: ["@nuxtjs/i18n", "nuxt-studio", "@nuxt/content"],
+
+  studio: {
+    repository: {
+      provider: "github",
+      owner: "francklebas",
+      repo: "francklebas-v2",
+      branch: "main",
+    },
+  },
 
   i18n: {
     strategy: "no_prefix", // single-page à état client : la langue bascule sans changer d'URL
@@ -37,8 +46,6 @@ export default defineNuxtConfig({
           content:
             "Frontend architect designing durable, high-performance interfaces since 2008. Vue, React, TypeScript.",
         },
-        // Recette : on empêche l'indexation (doublon du site prod). À RETIRER au passage en production.
-        { name: "robots", content: "noindex, nofollow" },
       ],
       link: [
         { rel: "preconnect", href: "https://fonts.googleapis.com" },

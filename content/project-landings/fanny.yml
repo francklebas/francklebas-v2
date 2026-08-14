@@ -1,0 +1,13 @@
+key: fanny
+hero:
+  title:
+    en: "Fanny AI"
+    fr: "Fanny AI"
+  body:
+    en: "A self-hosted voice assistant built from scratch: custom wake word detection, a local speech-to-text pipeline, no cloud dependency for the always-listening part. Still in progress — not deployed publicly yet."
+    fr: "Un assistant vocal auto-hébergé construit de zéro : détection de mot d'activation personnalisée, pipeline de reconnaissance vocale local, aucune dépendance cloud pour la partie toujours à l'écoute. Encore en cours — pas encore déployé publiquement."
+  cta:
+    label:
+      en: "View source on GitHub"
+      fr: "Voir le code sur GitHub"
+    href: https://github.com/francklebas/fanny-ai

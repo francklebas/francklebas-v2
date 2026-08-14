@@ -19,7 +19,7 @@ const showCoordinates = computed(() => motifDensity.value !== "subtle");
 
 <template>
   <div class="page page-enter">
-    <section class="hero pad-x">
+    <Container tag="section" class="hero">
       <div class="wave-wrap">
         <svg
           width="100%"
@@ -58,9 +58,9 @@ const showCoordinates = computed(() => motifDensity.value !== "subtle");
           }}</a>
         </div>
       </div>
-    </section>
+    </Container>
 
-    <section class="two-col home-intro pad-x">
+    <Container tag="section" class="two-col home-intro">
       <div>
         <h2 class="fr home-title">{{ $t("home.whatIdoHeading") }}</h2>
         <p class="body-copy home-copy">{{ $t("home.whatIdoBody") }}</p>
@@ -76,7 +76,9 @@ const showCoordinates = computed(() => motifDensity.value !== "subtle");
           >
         </div>
       </div>
-    </section>
+    </Container>
+
+    <MapModal :show="showMap" @close="showMap = false" />
   </div>
 </template>
 

@@ -1,0 +1,13 @@
+key: aurora
+hero:
+  title:
+    en: "AURORA Commerce"
+    fr: "AURORA Commerce"
+  body:
+    en: "A premium headless storefront built with Nuxt 4, Vue 3, TypeScript and Tailwind. Stripe Checkout, SSR-first rendering, i18n, and Lighthouse 95+ performance out of the box — a solid starting point for solo founders and small brands who want to launch fast without sacrificing quality."
+    fr: "Un storefront e-commerce headless premium construit avec Nuxt 4, Vue 3, TypeScript et Tailwind. Stripe Checkout, rendu SSR-first, i18n et des performances Lighthouse 95+ dès le départ — une base solide pour les solo founders et petites marques qui veulent lancer vite sans sacrifier la qualité."
+  cta:
+    label:
+      en: "Try the live demo"
+      fr: "Voir la démo live"
+    href: https://aurora.francklebas.com

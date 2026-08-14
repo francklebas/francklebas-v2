@@ -19,3 +19,6 @@ logs
 # Misc
 .DS_Store
 .wrangler
+
+# Notes perso, jamais commitées
+EDITING.md

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t, locale, setLocale } = useI18n();
+const { t } = useI18n();
 const timelineMeta = [
   { key: "y2008", year: "2008" },
   { key: "y2013", year: "2013" },
@@ -21,11 +21,11 @@ const timeline = computed(() =>
 
 <template>
   <div class="page page-enter">
-    <header class="page-header pad-x">
+    <Container tag="header" class="page-header">
       <div class="eyebrow">{{ t("sections.career") }}</div>
       <h2 class="fr page-title">{{ t("sections.experience") }}</h2>
-    </header>
-    <section class="timeline pad-x">
+    </Container>
+    <Container tag="section" class="timeline" :max-width="820">
       <div
         v-for="entry in timeline"
         :key="entry.year + entry.role"
@@ -39,7 +39,7 @@ const timeline = computed(() =>
           <p class="body-copy timeline-copy">{{ entry.desc }}</p>
         </div>
       </div>
-    </section>
+    </Container>
   </div>
 </template>
 
@@ -48,8 +48,6 @@ const timeline = computed(() =>
   display: flex;
 }
 .timeline {
-  max-width: 820px;
-  margin: 0 auto;
   padding-bottom: 140px;
 }
 .timeline-entry {

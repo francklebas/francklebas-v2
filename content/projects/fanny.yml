@@ -1,0 +1,13 @@
+key: fanny
+num: "04"
+title: Fanny AI
+stack:
+  - Python
+  - Docker
+role:
+  en: Creator
+  fr: Créateur
+desc:
+  en: "Self-hosted voice assistant — wake word, speech-to-text, local pipeline. In progress."
+  fr: "Assistant vocal auto-hébergé — mot d'activation, reconnaissance vocale, pipeline local. En cours."
+hasLanding: true

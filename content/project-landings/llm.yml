@@ -1,0 +1,13 @@
+key: llm
+hero:
+  title:
+    en: "LLM Review Framework"
+    fr: "LLM Review Framework"
+  body:
+    en: "LLM-powered code review as a pre-commit hook. Works with any LLM provider — Gemini, Ollama, Claude, OpenAI, Mistral, Groq, GitHub Copilot, or a custom command — on any project. Run `llmfwk init` to pick a provider and wire it into pre-commit in a few interactive steps."
+    fr: "Revue de code par LLM sous forme de hook pre-commit. Compatible avec n'importe quel fournisseur LLM — Gemini, Ollama, Claude, OpenAI, Mistral, Groq, GitHub Copilot, ou une commande personnalisée — sur n'importe quel projet. Lance `llmfwk init` pour choisir un fournisseur et le brancher sur pre-commit en quelques étapes interactives."
+  cta:
+    label:
+      en: "View on GitHub"
+      fr: "Voir sur GitHub"
+    href: https://github.com/francklebas/llm-review-framework

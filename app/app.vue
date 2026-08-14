@@ -1,111 +1,13 @@
 <script setup lang="ts">
-// Portfolio single-page — converti depuis le design Portfolio.dc.html.
-// La navigation interne (Home / Projects / Experience / Skills / Contact) est une
-// simple machine à états côté client : pas de routing, tout vit dans cette page.
 // i18n en/fr via @nuxtjs/i18n (stratégie no_prefix : bascule sans changer d'URL).
-
-const { t, locale, setLocale } = useI18n();
+const { locale } = useI18n();
 
 // <html lang> suit la locale active.
 useHead({ htmlAttrs: { lang: locale } });
-
-type Page = "accueil" | "projets" | "experience" | "competences" | "contact";
-const page = ref<Page>("accueil");
-const showMap = ref(false);
-
-// Réglages repris des props du design (valeurs par défaut).
-const motifDensity = ref<"subtle" | "moderate">("moderate");
-const showCoordinates = computed(() => motifDensity.value !== "subtle");
-
-// Coordonnées de contact.
-const contact = {
-  email: "francklebas@ik.me",
-  phone: "+33 7 45 65 51 08",
-};
-
-// Métadonnées non traduisibles (noms propres, stack, liens) ; rôle + description via i18n.
-// Corrections vs design d'origine : Resume AI = Nuxt/Mistral (pas Next/OpenAI) + lien démo ;
-// jobs ajouté (démo live) ; Fanny AI sans lien (non exposé).
-
-// Titres d'articles / réseaux : noms propres, non traduits.
-const socials = [
-  { label: "LinkedIn", link: "https://linkedin.com/in/francklebas" },
-  { label: "GitHub", link: "https://github.com/francklebas" },
-  { label: "DEV.to", link: "https://dev.to/francklebas" },
-  { label: "francklebas.com", link: "https://francklebas.com" },
-];
 </script>
 
 <template>
   <div class="root">
-    <!-- 05 — CONTACT -->
-    <!--<div v-else-if="page === 'contact'" class="page page-enter">
-      <header class="page-header pad-x">
-        <div class="eyebrow">{{ t("sections.contactEyebrow") }}</div>
-        <h2 class="fr page-title">{{ t("sections.letsTalk") }}</h2>
-      </header>
-      <section class="two-col contact-content pad-x">
-        <div>
-          <div class="contact-detail">
-            <div class="label">{{ t("contact.email") }}</div>
-            <a
-              :href="`mailto:${contact.email}`"
-              class="fr row-link contact-link"
-              >{{ contact.email }}</a
-            >
-          </div>
-          <div class="contact-detail">
-            <div class="label">{{ t("contact.phone") }}</div>
-            <a
-              :href="`tel:${contact.phone.replace(/\s/g, '')}`"
-              class="fr row-link contact-link"
-              >{{ contact.phone }}</a
-            >
-          </div>
-          <a :href="cvUrl" download class="button button-primary">{{
-            t("cta.downloadCV")
-          }}</a>
-        </div>
-        <div>
-          <div class="label elsewhere-label">{{ t("contact.elsewhere") }}</div>
-          <a
-            v-for="social in socials"
-            :key="social.link"
-            :href="social.link"
-            target="_blank"
-            rel="noopener"
-            class="row-link social-link"
-          >
-            <span>{{ social.label }}</span
-            ><span class="arrow">→</span>
-          </a>
-        </div>
-      </section>
-    </div>-->
-
-    <!-- MAP MODAL -->
-    <!--<div v-if="showMap" class="map-modal" @click="showMap = false">
-      <div class="map-dialog" @click.stop>
-        <div class="map-header">
-          <span class="fr map-title">Marseille — 43.2965° N, 5.3698° E</span>
-          <button
-            class="map-close"
-            type="button"
-            aria-label="Close map"
-            @click="showMap = false"
-          >
-            ×
-          </button>
-        </div>
-        <iframe
-          src="https://www.google.com/maps?q=43.2965,5.3698&output=embed"
-          width="100%"
-          height="380"
-          class="map-frame"
-          loading="lazy"
-        />
-      </div>
-    </div>-->
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -165,6 +67,11 @@ button {
 
 .page {
   padding-top: 96px;
+}
+
+.pad-x {
+  padding-left: var(--page-padding);
+  padding-right: var(--page-padding);
 }
 
 .brand,
@@ -425,6 +332,9 @@ button {
   gap: 8px;
   margin-bottom: 18px;
 }
+.project-chips .chip {
+  user-select: none;
+}
 .project-link,
 .arrow {
   color: var(--color-bg);
@@ -433,7 +343,6 @@ button {
 }
 
 .skills-grid {
-  max-width: 960px;
   gap: 28px;
 }
 .skill-group {
@@ -553,7 +462,10 @@ button {
 }
 
 .tl-line {
+  width: 20px;
+  flex-shrink: 0;
   position: relative;
+  border-left: 2px solid rgba(143, 168, 178, 0.25);
 }
 .tl-line::before {
   content: "";

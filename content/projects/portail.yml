@@ -1,0 +1,18 @@
+key: portail
+num: "01"
+title: Portail Autoentrepreneur
+stack:
+  - Vue 3
+  - TypeScript
+  - SCSS
+link: https://portail-autoentrepreneur.fr
+linkLabel:
+  en: "View the site"
+  fr: "Voir le site"
+role:
+  en: Frontend Architect
+  fr: Architecte Frontend
+desc:
+  en: "Platform for French freelancers and micro-entrepreneurs, serving more than 500 000 users."
+  fr: "Plateforme pour les indépendants et micro-entrepreneurs français, plus de 500 000 utilisateurs."
+hasLanding: false

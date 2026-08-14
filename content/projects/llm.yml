@@ -1,0 +1,18 @@
+key: llm
+num: "06"
+title: LLM Review Framework
+stack:
+  - Node.js
+  - CLI
+  - LLM
+link: https://github.com/francklebas/llm-review-framework
+linkLabel:
+  en: "View the code"
+  fr: "Voir le code"
+role:
+  en: Open Source Contributor
+  fr: Contributeur Open Source
+desc:
+  en: "LLM-powered code review as a pre-commit hook — works with any LLM provider, any project."
+  fr: "Revue de code par LLM en hook pre-commit — compatible avec n'importe quel fournisseur LLM, n'importe quel projet."
+hasLanding: true

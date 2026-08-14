@@ -1,0 +1,13 @@
+key: jobs
+hero:
+  title:
+    en: "Suivi de candidatures"
+    fr: "Suivi de candidatures"
+  body:
+    en: "A job application tracker with per-user authentication via Supabase — log every application, its status, and follow-ups in one place. Free account, live demo."
+    fr: "Un suivi de candidatures avec authentification par utilisateur via Supabase — centralisez chaque candidature, son statut et ses relances au même endroit. Compte gratuit, démo live."
+  cta:
+    label:
+      en: "Try the live demo"
+      fr: "Tester la démo live"
+    href: https://jobs.francklebas.com

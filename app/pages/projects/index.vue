@@ -1,79 +1,51 @@
 <script setup lang="ts">
-const { t, locale, setLocale } = useI18n();
-const projectMeta = [
-  {
-    key: "portail",
-    num: "01",
-    title: "Portail Autoentrepreneur",
-    stack: ["Vue 3", "TypeScript", "SCSS"],
-    link: "https://portail-autoentrepreneur.fr",
-    linkLabel: "portail-autoentrepreneur.fr",
-  },
-  {
-    key: "jobs",
-    num: "02",
-    title: "Suivi de candidatures",
-    stack: ["Nuxt 4", "TypeScript", "Supabase"],
-    link: "https://jobs.francklebas.com",
-    linkLabel: "jobs.francklebas.com",
-  },
-  {
-    key: "resume",
-    num: "03",
-    title: "Resume AI",
-    stack: ["Nuxt 4", "TypeScript", "Mistral AI", "Cloudflare"],
-    link: "https://resume.francklebas.com",
-    linkLabel: "resume.francklebas.com",
-  },
-  {
-    key: "fanny",
-    num: "04",
-    title: "Fanny AI",
-    stack: ["Python", "Docker"],
-    link: "",
-    linkLabel: "",
-  },
-  {
-    key: "aurora",
-    num: "05",
-    title: "AURORA Commerce",
-    stack: ["Nuxt 4", "Stripe"],
-    link: "https://aurora.francklebas.com",
-    linkLabel: "aurora.francklebas.com",
-  },
-  {
-    key: "llm",
-    num: "06",
-    title: "LLM Review Framework",
-    stack: ["Node.js", "CLI", "LLM"],
-    link: "https://github.com/francklebas/llm-review-framework",
-    linkLabel: "github.com/francklebas",
-  },
-] as const;
+const { locale } = useI18n();
+
+const { data: projectMeta } = await useAsyncData("projects", () =>
+  queryCollection("projects").all(),
+);
 
 const projects = computed(() =>
-  projectMeta.map((p) => ({
-    ...p,
-    role: t(`projects.${p.key}.role`),
-    desc: t(`projects.${p.key}.desc`),
-    hasLink: !!p.link,
-  })),
+  [...(projectMeta.value ?? [])]
+    .sort((a, b) => a.num.localeCompare(b.num))
+    .map((p) => ({
+      ...p,
+      role: pickLocale(p.role, locale.value),
+      desc: pickLocale(p.desc, locale.value),
+      linkLabel: p.linkLabel ? pickLocale(p.linkLabel, locale.value) : undefined,
+      hasLink: !!p.link,
+    })),
 );
 </script>
 
 <template>
   <div class="page page-enter">
-    <header class="page-header pad-x">
+    <Container tag="header" class="page-header">
       <div class="eyebrow">{{ $t("sections.selectedWork") }}</div>
       <h2 class="fr page-title">{{ $t("sections.projects") }}</h2>
-    </header>
-    <section class="two-col projects-grid pad-x">
+    </Container>
+    <Container tag="section" class="two-col projects-grid">
       <article v-for="project in projects" :key="project.num" class="card">
-        <div class="shot">Project screenshot</div>
+        <div class="shot">
+          <img
+            v-if="project.image"
+            :src="project.image"
+            :alt="project.title"
+            class="shot-image"
+          />
+          <template v-else>Project screenshot</template>
+        </div>
         <div class="card-body">
           <div class="project-heading">
             <span class="fr project-number">{{ project.num }}</span>
-            <h3 class="fr project-title">{{ project.title }}</h3>
+            <NuxtLink
+              v-if="project.hasLanding"
+              :to="`/projects/${project.key}`"
+              class="fr project-title"
+            >
+              {{ project.title }}
+            </NuxtLink>
+            <h3 v-else class="fr project-title">{{ project.title }}</h3>
           </div>
           <div class="project-role">{{ project.role }}</div>
           <p class="body-copy project-copy">{{ project.desc }}</p>
@@ -90,11 +62,20 @@ const projects = computed(() =>
             :href="project.link"
             target="_blank"
             rel="noopener"
-            class="button project-link button-primary chip chip-muted"
+            class="button button-primary"
             >{{ project.linkLabel }} →</a
           >
         </div>
       </article>
-    </section>
+    </Container>
   </div>
 </template>
+
+<style scoped>
+.shot-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>

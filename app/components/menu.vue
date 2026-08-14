@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t, locale, setLocale } = useI18n();
+const { locale, setLocale } = useI18n();
 const nav = [
   { id: "accueil", key: "", num: "01" },
   { id: "projets", key: "projects", num: "02" },
@@ -12,10 +12,6 @@ const nav = [
 <template>
   <div>
     <nav class="top">
-      <NuxtLink class="nav-item" active-class="is-active" to="/">
-        <span class="nav-number">01</span>{{ t(`nav.home`) }}
-        Accueil
-      </NuxtLink>
       <span class="brand-mark"><span /></span>
       <span class="brand-name">FRANCK LEBAS</span>
       <div class="nav-list">

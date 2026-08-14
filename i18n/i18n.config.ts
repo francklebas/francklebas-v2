@@ -35,32 +35,6 @@ export default defineI18nConfig(() => ({
         skills: "Skills & stack",
         letsTalk: "Let's talk",
       },
-      projects: {
-        portail: {
-          role: "Frontend Architect",
-          desc: "Platform for French freelancers and micro-entrepreneurs, serving more than 500 000 users.",
-        },
-        jobs: {
-          role: "Creator",
-          desc: "Job application tracker with auth and per-user data. Live demo — try it instantly, no account needed.",
-        },
-        resume: {
-          role: "Creator",
-          desc: "AI-powered resume builder that tailors resumes to job descriptions and exports polished PDFs. Live demo.",
-        },
-        fanny: {
-          role: "Creator",
-          desc: "Self-hosted voice assistant — wake word, speech-to-text, local pipeline. In progress.",
-        },
-        aurora: {
-          role: "Creator",
-          desc: "A Nuxt 4 e-commerce template with Stripe integration.",
-        },
-        llm: {
-          role: "Open Source Contributor",
-          desc: "LLM-powered code review as a pre-commit hook — works with any LLM provider, any project.",
-        },
-      },
       timeline: {
         nowLabel: "Now",
         y2008: {
@@ -139,32 +113,6 @@ export default defineI18nConfig(() => ({
         experience: "Expérience",
         skills: "Compétences & stack",
         letsTalk: "Parlons-en",
-      },
-      projects: {
-        portail: {
-          role: "Architecte Frontend",
-          desc: "Plateforme pour les indépendants et micro-entrepreneurs français, plus de 500 000 utilisateurs.",
-        },
-        jobs: {
-          role: "Créateur",
-          desc: "Suivi de candidatures avec authentification et données par utilisateur. Démo live — testable en un clic, sans compte.",
-        },
-        resume: {
-          role: "Créateur",
-          desc: "Générateur de CV par IA qui adapte le CV à l'offre d'emploi et exporte des PDF soignés. Démo live.",
-        },
-        fanny: {
-          role: "Créateur",
-          desc: "Assistant vocal auto-hébergé — mot d'activation, reconnaissance vocale, pipeline local. En cours.",
-        },
-        aurora: {
-          role: "Créateur",
-          desc: "Un template e-commerce Nuxt 4 avec intégration Stripe.",
-        },
-        llm: {
-          role: "Contributeur Open Source",
-          desc: "Revue de code par LLM en hook pre-commit — compatible avec n'importe quel fournisseur LLM, n'importe quel projet.",
-        },
       },
       timeline: {
         nowLabel: "Aujourd'hui",

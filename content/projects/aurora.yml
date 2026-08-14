@@ -1,0 +1,17 @@
+key: aurora
+num: "05"
+title: AURORA Commerce
+stack:
+  - Nuxt 4
+  - Stripe
+link: https://aurora.francklebas.com
+linkLabel:
+  en: "View the demo"
+  fr: "Voir la démo"
+role:
+  en: Creator
+  fr: Créateur
+desc:
+  en: "A Nuxt 4 e-commerce template with Stripe integration."
+  fr: "Un template e-commerce Nuxt 4 avec intégration Stripe."
+hasLanding: true

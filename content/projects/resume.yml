@@ -1,0 +1,20 @@
+key: resume
+num: "03"
+title: ResumeAI
+image: /images/resume-hero.png
+stack:
+  - Nuxt 4
+  - TypeScript
+  - Mistral AI
+  - Cloudflare
+link: https://resume.francklebas.com
+linkLabel:
+  en: "Try the demo"
+  fr: "Tester la démo"
+role:
+  en: Creator
+  fr: Créateur
+desc:
+  en: "AI-powered resume builder that tailors resumes to job descriptions and exports polished PDFs. Live demo."
+  fr: "Générateur de CV par IA qui adapte le CV à l'offre d'emploi et exporte des PDF soignés. Démo live."
+hasLanding: true
