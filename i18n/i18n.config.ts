@@ -10,6 +10,7 @@ export default defineI18nConfig(() => ({
         skills: "Skills",
         contact: "Contact",
       },
+      theme: { toggle: "Switch between dark and light theme" },
       hero: {
         eyebrow: "FRONTEND ARCHITECT — MARSEILLE · STOCKHOLM · BORDEAUX",
         headline:
@@ -24,6 +25,13 @@ export default defineI18nConfig(() => ({
         whatIdoBody:
           "I design and build frontend architectures for products that need to scale. My focus is on performance, clean component design, and writing code that lasts.",
         stack: "Outils & technologies",
+        solvedEyebrow: "PROBLEMS SOLVED",
+        solvedHeading: "What I built, and why",
+        problem: "Problem",
+        solution: "Solution",
+        result: "Result",
+        readCaseStudy: "Read the case study",
+        allProjects: "All projects",
       },
       sections: {
         selectedWork: "02 — SELECTED WORK",
@@ -89,6 +97,7 @@ export default defineI18nConfig(() => ({
         skills: "Compétences",
         contact: "Contact",
       },
+      theme: { toggle: "Basculer entre thème sombre et clair" },
       hero: {
         eyebrow: "ARCHITECTE FRONTEND — MARSEILLE · STOCKHOLM · BORDEAUX",
         headline:
@@ -103,6 +112,13 @@ export default defineI18nConfig(() => ({
         whatIdoBody:
           "Je conçois et construis des architectures frontend pour des produits qui doivent passer à l'échelle. Mon obsession : la performance, la qualité des composants et du code fait pour durer.",
         stack: "Outils & technologies",
+        solvedEyebrow: "PROBLÈMES RÉSOLUS",
+        solvedHeading: "Ce que j'ai construit, et pourquoi",
+        problem: "Problème",
+        solution: "Solution",
+        result: "Résultat",
+        readCaseStudy: "Lire l'étude de cas",
+        allProjects: "Tous les projets",
       },
       sections: {
         selectedWork: "02 — TRAVAUX CHOISIS",

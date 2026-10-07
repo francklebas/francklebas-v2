@@ -21,9 +21,28 @@ useHead({ htmlAttrs: { lang: locale } });
   --color-accent: #b87333;
   --color-muted: #8fa8b2;
   --color-copy: #c8d2d6;
-  --line-subtle: rgba(143, 168, 178, 0.15);
-  --line-medium: rgba(143, 168, 178, 0.3);
+  --line-rgb: 143, 168, 178;
+  --line-subtle: rgba(var(--line-rgb), 0.15);
+  --line-medium: rgba(var(--line-rgb), 0.3);
+  --nav-bg: rgba(11, 29, 38, 0.88);
+  --overlay-bg: rgba(11, 29, 38, 0.85);
+  --card-bg: rgba(255, 255, 255, 0.02);
   --page-padding: 48px;
+  color-scheme: dark;
+}
+
+/* Thème clair : posé sur <html data-theme="light"> (voir ThemeToggle + script head). */
+:root[data-theme="light"] {
+  --color-bg: #f3f1eb;
+  --color-text: #0b1d26;
+  --color-accent: #9a5b24;
+  --color-muted: #4d6873;
+  --color-copy: #2a4350;
+  --line-rgb: 77, 104, 115;
+  --nav-bg: rgba(243, 241, 235, 0.88);
+  --overlay-bg: rgba(11, 29, 38, 0.5);
+  --card-bg: rgba(255, 255, 255, 0.5);
+  color-scheme: light;
 }
 
 * {
@@ -44,6 +63,9 @@ button {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .fr {
@@ -60,9 +82,9 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 20px var(--page-padding);
-  background: rgba(11, 29, 38, 0.88);
+  background: var(--nav-bg);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(143, 168, 178, 0.15);
+  border-bottom: 1px solid var(--line-subtle);
 }
 
 .page {
@@ -152,7 +174,7 @@ button {
   letter-spacing: 1px;
 }
 .locale-separator {
-  color: rgba(143, 168, 178, 0.4);
+  color: rgba(var(--line-rgb), 0.4);
   font-size: 12px;
 }
 
@@ -296,9 +318,9 @@ button {
 }
 .card {
   overflow: hidden;
-  border: 1px solid rgba(143, 168, 178, 0.2);
+  border: 1px solid rgba(var(--line-rgb), 0.2);
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--card-bg);
 }
 .card-body {
   padding: 28px;
@@ -397,7 +419,7 @@ button {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: rgba(11, 29, 38, 0.85);
+  background: var(--overlay-bg);
 }
 .map-dialog {
   width: 100%;
@@ -451,7 +473,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(143, 168, 178, 0.08);
+  background: rgba(var(--line-rgb), 0.08);
   color: var(--color-muted);
   font-size: 13px;
   letter-spacing: 1px;
@@ -465,7 +487,7 @@ button {
   width: 20px;
   flex-shrink: 0;
   position: relative;
-  border-left: 2px solid rgba(143, 168, 178, 0.25);
+  border-left: 2px solid rgba(var(--line-rgb), 0.25);
 }
 .tl-line::before {
   content: "";

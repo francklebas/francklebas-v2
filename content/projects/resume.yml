@@ -18,3 +18,13 @@ desc:
   en: "AI-powered resume builder that tailors resumes to job descriptions and exports polished PDFs. Live demo."
   fr: "Générateur de CV par IA qui adapte le CV à l'offre d'emploi et exporte des PDF soignés. Démo live."
 hasLanding: true
+highlight:
+  problem:
+    en: "Back in France after six years in Sweden, every application needed its own rewrite of a resume built for another market."
+    fr: "De retour en France après six ans en Suède, chaque candidature exigeait de réécrire un CV pensé pour un autre marché."
+  solution:
+    en: "One structured career record (Supabase, Postgres + RLS) that Mistral AI tailors to each job posting, exported as both a design PDF and an ATS template. GDPR built in from day one."
+    fr: "Un parcours stocké en une source structurée unique (Supabase, Postgres + RLS), que Mistral AI adapte à chaque offre, exportée en PDF design et en template ATS. RGPD intégré dès la conception."
+  result:
+    en: "About 12 minutes to tailor for a new posting, 3 to 4 to adjust a version. Six real applications through the full workflow, solo from first commit to production in one month."
+    fr: "Environ 12 minutes pour cibler une nouvelle offre, 3 à 4 pour ajuster une version. Six candidatures réelles passées par le parcours complet, en solo, du premier commit à la production en un mois."

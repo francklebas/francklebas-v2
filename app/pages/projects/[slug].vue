@@ -105,6 +105,10 @@ const gallery = computed(() => landing.value!.gallery ?? []);
   padding-top: 60px;
 }
 
+.case-section .body-copy {
+  white-space: pre-line;
+}
+
 .case-title {
   margin: 0 0 12px;
   font-size: 26px;

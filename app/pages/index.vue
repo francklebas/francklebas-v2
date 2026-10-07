@@ -15,6 +15,30 @@ const stackChips = [
 // Réglages repris des props du design (valeurs par défaut).
 const motifDensity = ref<"subtle" | "moderate">("moderate");
 const showCoordinates = computed(() => motifDensity.value !== "subtle");
+
+const { locale } = useI18n();
+
+// Projets mis en avant : ceux qui ont un bloc `highlight` dans content/projects.
+const { data: projectMeta } = await useAsyncData("home-highlights", () =>
+  queryCollection("projects").all(),
+);
+
+const highlights = computed(() =>
+  [...(projectMeta.value ?? [])]
+    .filter((p) => p.highlight)
+    .sort((a, b) => a.num.localeCompare(b.num))
+    .map((p) => ({
+      key: p.key,
+      num: p.num,
+      title: p.title,
+      stack: p.stack,
+      hasLanding: p.hasLanding,
+      steps: (["problem", "solution", "result"] as const).map((step) => ({
+        step,
+        text: pickLocale(p.highlight![step], locale.value),
+      })),
+    })),
+);
 </script>
 
 <template>
@@ -30,10 +54,26 @@ const showCoordinates = computed(() => motifDensity.value !== "subtle");
         >
           <defs>
             <linearGradient id="waveFade1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#8FA8B2" stop-opacity="0.35" />
-              <stop offset="35%" stop-color="#8FA8B2" stop-opacity="0.16" />
-              <stop offset="70%" stop-color="#8FA8B2" stop-opacity="0.05" />
-              <stop offset="100%" stop-color="#8FA8B2" stop-opacity="0" />
+              <stop
+                offset="0%"
+                style="stop-color: var(--color-muted)"
+                stop-opacity="0.35"
+              />
+              <stop
+                offset="35%"
+                style="stop-color: var(--color-muted)"
+                stop-opacity="0.16"
+              />
+              <stop
+                offset="70%"
+                style="stop-color: var(--color-muted)"
+                stop-opacity="0.05"
+              />
+              <stop
+                offset="100%"
+                style="stop-color: var(--color-muted)"
+                stop-opacity="0"
+              />
             </linearGradient>
           </defs>
           <path
@@ -78,6 +118,43 @@ const showCoordinates = computed(() => motifDensity.value !== "subtle");
       </div>
     </Container>
 
+    <Container v-if="highlights.length" tag="section" class="solved">
+      <div class="eyebrow">{{ $t("home.solvedEyebrow") }}</div>
+      <h2 class="fr home-title">{{ $t("home.solvedHeading") }}</h2>
+      <article v-for="project in highlights" :key="project.key" class="solved-item">
+        <div class="project-heading">
+          <span class="fr project-number">{{ project.num }}</span>
+          <h3 class="fr project-title">{{ project.title }}</h3>
+        </div>
+        <div class="solved-steps">
+          <div v-for="item in project.steps" :key="item.step" class="solved-step">
+            <div class="label">{{ $t(`home.${item.step}`) }}</div>
+            <p class="body-copy">{{ item.text }}</p>
+          </div>
+        </div>
+        <div class="solved-footer">
+          <div class="chip-list project-chips">
+            <span
+              v-for="tech in project.stack"
+              :key="tech"
+              class="chip chip-muted"
+              >{{ tech }}</span
+            >
+          </div>
+          <NuxtLink
+            v-if="project.hasLanding"
+            :to="`/projects/${project.key}`"
+            class="button button-secondary"
+          >
+            {{ $t("home.readCaseStudy") }} →
+          </NuxtLink>
+        </div>
+      </article>
+      <NuxtLink to="/projects" class="solved-all">
+        {{ $t("home.allProjects") }} →
+      </NuxtLink>
+    </Container>
+
     <MapModal :show="showMap" @close="showMap = false" />
   </div>
 </template>
@@ -86,11 +163,55 @@ const showCoordinates = computed(() => motifDensity.value !== "subtle");
 .home-intro {
   gap: 64px;
   padding-top: 100px;
-  padding-bottom: 140px;
+  padding-bottom: 100px;
 }
 .home-title {
   margin: 0 0 20px;
   font-size: 32px;
   font-weight: 500;
+}
+.solved {
+  padding-bottom: 140px;
+}
+.solved-item {
+  border-top: 1px solid var(--line-subtle);
+  padding: 32px 0;
+}
+.solved-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 20px;
+}
+.solved-step {
+  border-left: 2px solid var(--color-accent);
+  padding-left: 16px;
+
+  .label {
+    margin-bottom: 8px;
+  }
+}
+.solved-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 28px;
+
+  .project-chips {
+    margin-bottom: 0;
+  }
+}
+.solved-all {
+  color: var(--color-accent);
+  font-size: 15px;
+  text-decoration: none;
+}
+@media (max-width: 720px) {
+  .solved-steps {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 }
 </style>

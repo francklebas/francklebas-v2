@@ -44,8 +44,13 @@ const nav = [
             FR
           </button>
         </div>
+
+        <ThemeToggle class="theme-toggle-nav" />
       </div>
     </nav>
+
+    <!-- Mobile : hors de .top, dont le backdrop-filter piègerait le position: fixed -->
+    <ThemeToggle class="theme-toggle-fab" />
   </div>
 </template>
 
@@ -68,6 +73,29 @@ const nav = [
   &.is-active {
     color: var(--color-accent);
     text-decoration: underline;
+  }
+}
+
+.theme-toggle-fab {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .theme-toggle-nav {
+    display: none;
+  }
+  .theme-toggle-fab {
+    display: inline-flex;
+    position: fixed;
+    right: var(--page-padding);
+    bottom: calc(20px + env(safe-area-inset-bottom));
+    z-index: 100;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line-medium);
+    border-radius: 50%;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
   }
 }
 </style>

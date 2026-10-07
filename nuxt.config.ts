@@ -47,6 +47,14 @@ export default defineNuxtConfig({
             "Frontend architect designing durable, high-performance interfaces since 2008. Vue, React, TypeScript.",
         },
       ],
+      script: [
+        {
+          // Applique le thème mémorisé avant le premier rendu (évite le flash sombre → clair).
+          innerHTML:
+            "try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}",
+          tagPosition: "head",
+        },
+      ],
       link: [
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         {

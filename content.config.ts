@@ -26,6 +26,14 @@ export default defineContentConfig({
         role: localized,
         desc: localized,
         hasLanding: z.boolean().default(false),
+        // Résumé problème → solution → résultat affiché sur la home (optionnel).
+        highlight: z
+          .object({
+            problem: localized,
+            solution: localized,
+            result: localized,
+          })
+          .optional(),
       }),
     }),
     projectLandings: defineCollection({
