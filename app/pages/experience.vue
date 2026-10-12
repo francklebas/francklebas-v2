@@ -58,7 +58,7 @@ const timeline = computed(() =>
   width: 70px;
   flex-shrink: 0;
   padding-top: 2px;
-  color: var(--color-accent);
+  color: var(--color-dominant-ink);
   font-size: 18px;
 }
 .timeline-content {

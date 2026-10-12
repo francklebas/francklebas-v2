@@ -47,7 +47,7 @@ function toggleTheme() {
   transition: color 0.2s ease;
   &:hover,
   &:focus-visible {
-    color: var(--color-accent);
+    color: var(--color-dominant-ink);
   }
 }
 .icon {

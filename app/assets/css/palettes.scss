@@ -1,0 +1,119 @@
+@use "sass:color";
+@use "sass:map";
+
+// Une palette par page (mapping dans app/utils/palettes.ts), posée sur <html data-palette>.
+// Clés normalisées : p4 `ombre` → clair, `brouillard` → texte ; p5 `papier` → texte.
+// Valeurs ajoutées pour l'accessibilité (contraste WCAG ≥ 4.5 pour le texte) :
+//   encre          dominante utilisée comme couleur de texte sur `fond`
+//   sur-dominante  texte posé sur un aplat de dominante (boutons)
+//   encre-claire   dominante en texte sur le fond du thème clair (= `texte`)
+//   accent-clair   accent décoratif (≥ 3:1) sur le fond du thème clair
+// p1 et p2 sont des palettes complémentaires construites sur le même gabarit.
+$palettes: (
+  p1: (
+    fond: #07160f,
+    surface: #123c2a,
+    dominante: #19b36b,
+    clair: #7debb0,
+    texte: #eafbf2,
+    accent: #ff6fa8,
+    encre: #19b36b,
+    sur-dominante: #07160f,
+    encre-claire: #127446,
+    accent-clair: #cd5d89,
+  ),
+  p2: (
+    fond: #150a26,
+    surface: #2e1656,
+    dominante: #8b3df0,
+    clair: #c9a6ff,
+    texte: #f3ecff,
+    accent: #ff9f1c,
+    encre: #9a57f4,
+    sur-dominante: #ffffff,
+    encre-claire: #8b3df0,
+    accent-clair: #b9721f,
+  ),
+  p3: (
+    fond: #0a1230,
+    surface: #13265c,
+    dominante: #1e7be6,
+    clair: #8fd3ff,
+    texte: #e8f4ff,
+    accent: #c8d94a,
+    encre: #2984e8,
+    sur-dominante: #0a1230,
+    encre-claire: #1a66c2,
+    accent-clair: #7c8940,
+  ),
+  p4: (
+    fond: #1e1e1e,
+    surface: #3a3836,
+    dominante: #ffd400,
+    clair: #f2a100,
+    texte: #e6e3dc,
+    accent: #d8452b,
+    encre: #ffd400,
+    sur-dominante: #1e1e1e,
+    encre-claire: #7d5910,
+    accent-clair: #d8452b,
+  ),
+  p5: (
+    fond: #0b0b0b,
+    surface: #5e0a12,
+    dominante: #e2101f,
+    clair: #ff5a5f,
+    texte: #faf6ee,
+    accent: #2de0d2,
+    encre: #eb2632,
+    sur-dominante: #faf6ee,
+    encre-claire: #e2101f,
+    accent-clair: #1f8b82,
+  ),
+);
+
+@function rgb-triplet($c) {
+  @return color.channel($c, "red", $space: rgb), color.channel($c, "green", $space: rgb),
+    color.channel($c, "blue", $space: rgb);
+}
+
+@each $name, $p in $palettes {
+  $fond: map.get($p, fond);
+  $texte: map.get($p, texte);
+
+  :root[data-palette="#{$name}"] {
+    --color-bg: #{$fond};
+    --color-surface: #{map.get($p, surface)};
+    --color-text: #{$texte};
+    --color-copy: #{color.mix($texte, $fond, 85%)};
+    --color-muted: #{color.mix($texte, $fond, 65%)};
+    --color-dominant: #{map.get($p, dominante)};
+    --color-dominant-ink: #{map.get($p, encre)};
+    --color-on-dominant: #{map.get($p, sur-dominante)};
+    --color-glow: #{map.get($p, clair)};
+    --color-accent: #{map.get($p, accent)};
+    --line-rgb: #{rgb-triplet(color.mix($texte, $fond, 60%))};
+    --nav-bg: #{rgba($fond, 0.88)};
+    --overlay-bg: #{rgba($fond, 0.85)};
+    --card-bg: #{rgba(map.get($p, surface), 0.25)};
+    color-scheme: dark;
+  }
+
+  // Variante claire : on inverse fond / texte, la dominante reste en aplat,
+  // et passe par `encre-claire` dès qu'elle sert de couleur de texte.
+  :root[data-palette="#{$name}"][data-theme="light"] {
+    --color-bg: #{$texte};
+    --color-surface: #{color.mix(map.get($p, surface), $texte, 12%)};
+    --color-text: #{$fond};
+    --color-copy: #{color.mix($fond, $texte, 85%)};
+    --color-muted: #{color.mix($fond, $texte, 68%)};
+    --color-dominant-ink: #{map.get($p, encre-claire)};
+    --color-glow: #{map.get($p, dominante)};
+    --color-accent: #{map.get($p, accent-clair)};
+    --line-rgb: #{rgb-triplet(color.mix($fond, $texte, 60%))};
+    --nav-bg: #{rgba($texte, 0.88)};
+    --overlay-bg: #{rgba($fond, 0.5)};
+    --card-bg: rgba(255, 255, 255, 0.5);
+    color-scheme: light;
+  }
+}

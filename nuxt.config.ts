@@ -5,6 +5,9 @@ export default defineNuxtConfig({
 
   modules: ["@nuxtjs/i18n", "nuxt-studio", "@nuxt/content"],
 
+  // Palettes par page (couleur dominante), appliquées via <html data-palette>.
+  css: ["~/assets/css/palettes.scss"],
+
   studio: {
     repository: {
       provider: "github",

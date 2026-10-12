@@ -71,7 +71,7 @@ const nav = [
   text-decoration: none;
   &:hover,
   &.is-active {
-    color: var(--color-accent);
+    color: var(--color-dominant-ink);
     text-decoration: underline;
   }
 }

@@ -2,8 +2,10 @@
 // i18n en/fr via @nuxtjs/i18n (stratégie no_prefix : bascule sans changer d'URL).
 const { locale } = useI18n();
 
-// <html lang> suit la locale active.
-useHead({ htmlAttrs: { lang: locale } });
+// <html lang> suit la locale active ; <html data-palette> suit la page (cf. utils/palettes.ts).
+const route = useRoute();
+const palette = computed(() => paletteFor(route.path));
+useHead({ htmlAttrs: { lang: locale, "data-palette": palette } });
 </script>
 
 <template>
@@ -16,33 +18,8 @@ useHead({ htmlAttrs: { lang: locale } });
 
 <style>
 :root {
-  --color-bg: #0b1d26;
-  --color-text: #edeee9;
-  --color-accent: #b87333;
-  --color-muted: #8fa8b2;
-  --color-copy: #c8d2d6;
-  --line-rgb: 143, 168, 178;
-  --line-subtle: rgba(var(--line-rgb), 0.15);
-  --line-medium: rgba(var(--line-rgb), 0.3);
-  --nav-bg: rgba(11, 29, 38, 0.88);
-  --overlay-bg: rgba(11, 29, 38, 0.85);
-  --card-bg: rgba(255, 255, 255, 0.02);
+  /* Couleurs : assets/css/palettes.scss, selon <html data-palette> et data-theme. */
   --page-padding: 48px;
-  color-scheme: dark;
-}
-
-/* Thème clair : posé sur <html data-theme="light"> (voir ThemeToggle + script head). */
-:root[data-theme="light"] {
-  --color-bg: #f3f1eb;
-  --color-text: #0b1d26;
-  --color-accent: #9a5b24;
-  --color-muted: #4d6873;
-  --color-copy: #2a4350;
-  --line-rgb: 77, 104, 115;
-  --nav-bg: rgba(243, 241, 235, 0.88);
-  --overlay-bg: rgba(11, 29, 38, 0.5);
-  --card-bg: rgba(255, 255, 255, 0.5);
-  color-scheme: light;
 }
 
 * {
@@ -85,6 +62,14 @@ button {
   background: var(--nav-bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line-subtle);
+  /* Bandeau de la couleur dominante : la signature qui change d'une page à l'autre. */
+  box-shadow: inset 0 3px 0 var(--color-dominant);
+  transition: box-shadow 0.3s ease;
+}
+
+::selection {
+  background: var(--color-dominant);
+  color: var(--color-on-dominant);
 }
 
 .page {
@@ -128,7 +113,7 @@ button {
   height: 12px;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--color-accent);
+  border: 2px solid var(--color-dominant);
   border-radius: 50%;
 }
 .brand-mark span {
@@ -157,12 +142,12 @@ button {
   transition: color 0.2s ease;
 }
 .nav-item.is-active {
-  color: var(--color-accent);
+  color: var(--color-dominant-ink);
   font-weight: 600;
 }
 .nav-number {
   margin-right: 6px;
-  color: var(--color-accent);
+  color: var(--color-dominant-ink);
   font-size: 11px;
 }
 .locale-switcher {
@@ -205,7 +190,7 @@ button {
 }
 .eyebrow {
   margin-bottom: 16px;
-  color: var(--color-accent);
+  color: var(--color-dominant-ink);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 3px;
@@ -229,7 +214,7 @@ button {
 }
 .coordinates {
   margin-top: 20px;
-  color: var(--color-accent);
+  color: var(--color-dominant-ink);
   cursor: pointer;
   font-size: 13px;
   letter-spacing: 1px;
@@ -251,9 +236,9 @@ button {
   text-decoration: none;
 }
 .button-primary {
-  border: 1px solid var(--color-accent);
-  background: var(--color-accent);
-  color: var(--color-bg);
+  border: 1px solid var(--color-dominant);
+  background: var(--color-dominant);
+  color: var(--color-on-dominant);
 }
 .button-secondary {
   border: 1px solid var(--color-muted);
@@ -331,7 +316,7 @@ button {
   margin-bottom: 8px;
 }
 .project-number {
-  color: var(--color-accent);
+  color: var(--color-dominant-ink);
   font-size: 15px;
 }
 .project-title {
@@ -368,7 +353,7 @@ button {
   gap: 28px;
 }
 .skill-group {
-  border-left: 2px solid var(--color-accent);
+  border-left: 2px solid var(--color-dominant);
   padding: 6px 0 6px 20px;
 }
 .skill-title {
@@ -480,7 +465,7 @@ button {
 }
 
 .row-link:hover {
-  color: var(--color-accent);
+  color: var(--color-dominant-ink);
 }
 
 .tl-line {

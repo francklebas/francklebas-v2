@@ -56,22 +56,22 @@ const highlights = computed(() =>
             <linearGradient id="waveFade1" x1="0" y1="0" x2="0" y2="1">
               <stop
                 offset="0%"
-                style="stop-color: var(--color-muted)"
+                style="stop-color: var(--color-glow)"
                 stop-opacity="0.35"
               />
               <stop
                 offset="35%"
-                style="stop-color: var(--color-muted)"
+                style="stop-color: var(--color-glow)"
                 stop-opacity="0.16"
               />
               <stop
                 offset="70%"
-                style="stop-color: var(--color-muted)"
+                style="stop-color: var(--color-glow)"
                 stop-opacity="0.05"
               />
               <stop
                 offset="100%"
-                style="stop-color: var(--color-muted)"
+                style="stop-color: var(--color-glow)"
                 stop-opacity="0"
               />
             </linearGradient>
@@ -184,7 +184,7 @@ const highlights = computed(() =>
   margin-top: 20px;
 }
 .solved-step {
-  border-left: 2px solid var(--color-accent);
+  border-left: 2px solid var(--color-dominant);
   padding-left: 16px;
 
   .label {
@@ -204,7 +204,7 @@ const highlights = computed(() =>
   }
 }
 .solved-all {
-  color: var(--color-accent);
+  color: var(--color-dominant-ink);
   font-size: 15px;
   text-decoration: none;
 }
