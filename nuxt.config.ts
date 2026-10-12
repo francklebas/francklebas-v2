@@ -37,6 +37,12 @@ export default defineNuxtConfig({
   // déployable tel quel sur Cloudflare Pages, GitHub Pages, etc.
   ssr: true,
 
+  // Navigation enveloppée dans document.startViewTransition (désactivé si prefers-reduced-motion).
+  // Le balayage diagonal est défini dans app.vue (::view-transition-new(root)).
+  experimental: {
+    viewTransition: true,
+  },
+
   app: {
     head: {
       htmlAttrs: { lang: "en" },

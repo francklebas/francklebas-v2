@@ -6,6 +6,22 @@ const { locale } = useI18n();
 const route = useRoute();
 const palette = computed(() => paletteFor(route.path));
 useHead({ htmlAttrs: { lang: locale, "data-palette": palette } });
+
+// Côté client, on pose les attributs de façon synchrone au changement de route : la View Transition
+// capture la nouvelle page dès page:finish, avant que useHead n'ait patché le DOM.
+// `data-navigated` réserve l'animation d'entrée (swellIn) au premier chargement : ensuite,
+// c'est le balayage diagonal de la View Transition qui fait l'entrée.
+if (import.meta.client) {
+  watch(
+    () => route.path,
+    () => {
+      const root = document.documentElement;
+      root.dataset.palette = palette.value;
+      if ("startViewTransition" in document) root.dataset.navigated = "";
+    },
+    { flush: "sync" },
+  );
+}
 </script>
 
 <template>
@@ -487,6 +503,36 @@ button {
 
 .page-enter {
   animation: swellIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Changement de page : la nouvelle page (fond, palette et contenu) balaie l'ancienne
+   en diagonale, de droite à gauche (bord incliné de 20 % de la largeur). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  animation: diagonalWipe 1s cubic-bezier(0.65, 0, 0.35, 1) both; /* easeInOutCubic : départ et arrivée lents */
+}
+/* Après la première navigation, l'entrée de page est assurée par le balayage seul. */
+:root[data-navigated] .page-enter {
+  animation: none;
+}
+/* Pendant le balayage, la nouvelle palette doit être appliquée d'un coup : sinon les transitions
+   de couleur (fond, nav, liens…) se rejoueraient à l'intérieur de la nouvelle vue. */
+:root:active-view-transition,
+:root:active-view-transition * {
+  transition: none !important;
+}
+
+@keyframes diagonalWipe {
+  from {
+    clip-path: polygon(100% 0, 120% 0, 120% 100%, 120% 100%);
+  }
+  to {
+    clip-path: polygon(-20% 0, 120% 0, 120% 100%, 0 100%);
+  }
 }
 
 @keyframes swellIn {
