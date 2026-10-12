@@ -1,9 +1,10 @@
 key: aurora
 num: "05"
 title: AURORA Commerce
+image: /images/aurora-hero.png
 stack:
   - Nuxt 4
-  - Stripe
+  - Shopify
 link: https://aurora.francklebas.com
 linkLabel:
   en: "View the demo"
@@ -12,6 +13,16 @@ role:
   en: Creator
   fr: Créateur
 desc:
-  en: "A Nuxt 4 e-commerce template with Stripe integration."
-  fr: "Un template e-commerce Nuxt 4 avec intégration Stripe."
+  en: "A headless Nuxt 4 e-commerce template on Shopify, with pluggable catalog providers."
+  fr: "Un template e-commerce headless Nuxt 4 sur Shopify, avec des fournisseurs de catalogue interchangeables."
 hasLanding: true
+highlight:
+  problem:
+    en: "Launching a small online shop usually means picking between a closed platform that charges for every feature and a full back office to host, secure and maintain for a dozen products."
+    fr: "Lancer une petite boutique en ligne, c'est souvent choisir entre une plateforme fermée qui facture chaque fonctionnalité et un back-office complet à héberger, sécuriser et maintenir pour une dizaine de produits."
+  solution:
+    en: "A headless Nuxt 4 template with no back office to host: products, payment and orders live in Shopify, with its hosted checkout, while Aurora handles only the storefront. Server-side rendering keeps product pages indexable and fast."
+    fr: "Un template Nuxt 4 headless sans back-office à héberger : produits, paiement et commandes vivent dans Shopify, avec son checkout hébergé, et Aurora ne gère que la vitrine. Le rendu serveur garde des pages produits indexables et rapides."
+  result:
+    en: "A shop a developer can ship in a few days, with no database, no admin panel to maintain and no card data passing through the app. Built end to end from January to March 2026 and published on Gumroad."
+    fr: "Une boutique livrable en quelques jours, sans base de données, sans back-office à maintenir, et sans qu'aucune donnée bancaire ne transite par l'application. Mené de bout en bout de janvier à mars 2026 et publié sur Gumroad."

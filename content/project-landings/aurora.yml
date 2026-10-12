@@ -1,13 +1,47 @@
 key: aurora
 hero:
   title:
-    en: "AURORA Commerce"
-    fr: "AURORA Commerce"
+    en: "Aurora: an e-commerce shop with no back office to maintain"
+    fr: "Aurora : une boutique e-commerce sans back-office à maintenir"
   body:
-    en: "A premium headless storefront built with Nuxt 4, Vue 3, TypeScript and Tailwind. Stripe Checkout, SSR-first rendering, i18n, and Lighthouse 95+ performance out of the box — a solid starting point for solo founders and small brands who want to launch fast without sacrificing quality."
-    fr: "Un storefront e-commerce headless premium construit avec Nuxt 4, Vue 3, TypeScript et Tailwind. Stripe Checkout, rendu SSR-first, i18n et des performances Lighthouse 95+ dès le départ — une base solide pour les solo founders et petites marques qui veulent lancer vite sans sacrifier la qualité."
+    en: "A ready-to-deploy headless Nuxt 4 e-commerce template: catalog and payment delegated to Shopify, zero servers to maintain. Built end to end, from January to March 2026: product scoping, architecture, development, packaging and publication on Gumroad."
+    fr: "Template e-commerce Nuxt 4 headless prêt à déployer : catalogue et paiement délégués à Shopify, zéro serveur à maintenir. Projet mené de bout en bout, de janvier à mars 2026 : cadrage produit, choix d'architecture, développement, packaging et publication sur Gumroad."
+  image: /images/aurora-hero.png
   cta:
     label:
       en: "Try the live demo"
       fr: "Voir la démo live"
     href: https://aurora.francklebas.com
+context:
+  title:
+    en: The problem
+    fr: Le problème
+  body:
+    en: "Launching a small online shop often means choosing between two bad options: a closed platform that charges for every feature, or a full back office to host, secure and maintain in order to sell a dozen products. Aurora started from a simple question: what if the shop had no back office of its own at all?"
+    fr: "Lancer une petite boutique en ligne, c'est souvent choisir entre deux mauvaises options : une plateforme fermée qui facture chaque fonctionnalité, ou un back-office complet à héberger, sécuriser et maintenir pour vendre une dizaine de produits. Aurora est né d'une question simple : et si la boutique n'avait pas de back-office à elle du tout ?"
+approach:
+  title:
+    en: The solution
+    fr: La solution
+  body:
+    en: |-
+      Aurora is a headless e-commerce template built on Nuxt 4, designed so a developer can ship a clean shop in a few days, and so it stays simple to run afterwards. Products, payment, customers and orders live in Shopify; Aurora handles the storefront.
+
+      - Pluggable catalog through adapters: Shopify Storefront API by default, Nuxt Content v3 (products as versioned content) or Sanity as alternatives. No database on the shop side.
+      - Payment delegated to Shopify's hosted checkout: the server builds a Shopify cart and redirects to it, no card data passes through the application, and compliance is carried by Shopify.
+      - Server-side rendering for product pages that are indexable and fast to display.
+      - Semantic HTML and Vue 3 Composition API components, typed with TypeScript, readable by the next developer who opens the project.
+    fr: |-
+      Aurora est un template e-commerce headless construit sur Nuxt 4, pensé pour qu'un développeur livre une boutique propre en quelques jours, et pour qu'elle reste simple à faire vivre ensuite. Produits, paiement, clients et commandes vivent dans Shopify ; Aurora s'occupe de la vitrine.
+
+      - Catalogue branché via des adaptateurs : Storefront API de Shopify par défaut, Nuxt Content v3 (produits en contenu versionné) ou Sanity en alternative. Aucune base de données côté boutique.
+      - Paiement délégué au checkout hébergé de Shopify : le serveur construit un panier Shopify et y redirige, aucune donnée bancaire ne transite par l'application, la conformité est portée par Shopify.
+      - Rendu côté serveur pour des pages produits indexables et rapides à l'affichage.
+      - HTML sémantique et composants Vue 3 en Composition API, typés en TypeScript, lisibles par le prochain développeur qui ouvrira le projet.
+results:
+  title:
+    en: What it shows
+    fr: Ce que ça démontre
+  body:
+    en: "Knowing how to remove rather than add. Every missing building block (database, self-hosted back office, payment handling) is one you will never have to secure, migrate or debug. It is the same approach I apply to large-scale platforms: a frontend architecture is also judged by what it avoids."
+    fr: "Savoir enlever plutôt qu'ajouter. Chaque brique absente (base de données, back-office maison, gestion des paiements) est une brique qu'on n'aura jamais à sécuriser, migrer ou déboguer. C'est la même approche que j'applique sur des plateformes à grande échelle : une architecture front se juge aussi à ce qu'elle évite."

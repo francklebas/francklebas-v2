@@ -68,7 +68,7 @@ export default defineI18nConfig(() => ({
         y2024: {
           role: "Creator",
           company: "AURORA Commerce",
-          desc: "Nuxt 4 e-commerce template with Stripe integration.",
+          desc: "Headless Nuxt 4 e-commerce template on Shopify.",
         },
         now: {
           role: "Open source & freelance",
@@ -155,7 +155,7 @@ export default defineI18nConfig(() => ({
         y2024: {
           role: "Créateur",
           company: "AURORA Commerce",
-          desc: "Template e-commerce Nuxt 4 avec intégration Stripe.",
+          desc: "Template e-commerce Nuxt 4 headless sur Shopify.",
         },
         now: {
           role: "Open source & freelance",
