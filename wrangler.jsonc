@@ -1,7 +1,6 @@
 {
-  // Déploiement Cloudflare (Workers Static Assets), automatique à chaque push sur main (Workers Builds).
-  // Build : `bun run generate` → sert le dossier statique `.output/public`.
-  // Deploy : `npx wrangler deploy` (crée l'enregistrement DNS du custom domain).
+  // Déploiement Cloudflare (Workers Static Assets), manuel uniquement : `bun run deploy`
+  // (= `nuxt generate` → dossier statique `.output/public`, puis `wrangler deploy`).
   "name": "francklebas-v2",
   "compatibility_date": "2025-07-15",
   "assets": {

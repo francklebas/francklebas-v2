@@ -66,17 +66,17 @@ bun run preview
 
 ## Déploiement — `francklebas.com`
 
-Cloudflare Workers Static Assets (config dans `wrangler.jsonc`). **Chaque push sur `main`
-déploie automatiquement** (Workers Builds : `bun run generate` puis `npx wrangler deploy`).
-Déploiement manuel équivalent :
+Cloudflare Workers Static Assets (config dans `wrangler.jsonc`). **Déploiement manuel
+uniquement**, aucun déploiement automatique sur push :
 
 ```bash
-bun run generate
-bunx wrangler deploy   # sert .output/public + crée le DNS de francklebas.com
+bun run deploy   # nuxt generate, puis wrangler deploy (sert .output/public sur francklebas.com)
 ```
 
-Les domaines du Worker sont ceux de `routes` dans `wrangler.jsonc`, **tel que commité** : un
-domaine absent de la liste est détaché au déploiement suivant et son enregistrement DNS supprimé.
+Le déploiement publie le dossier de travail tel quel, modifications non commitées comprises.
+
+Les domaines du Worker sont ceux de `routes` dans `wrangler.jsonc` : un domaine absent de la
+liste est détaché au déploiement suivant et son enregistrement DNS supprimé.
 
 Prérequis : la zone `francklebas.com` doit être sur le même compte Cloudflare (login
 `wrangler login` au préalable). Le domaine est en `custom_domain`, wrangler crée
