@@ -1,0 +1,22 @@
+key: aube
+num: "07"
+title: Aube
+image: /images/aube-hero.webp
+stack:
+  - Vue 3
+  - TypeScript
+  - PWA
+  - Cloudflare Workers
+  - D1
+  - iOS Shortcuts
+link: https://github.com/francklebas/aube
+linkLabel:
+  en: "View the code"
+  fr: "Voir le code"
+role:
+  en: Creator
+  fr: Créateur
+desc:
+  en: "An iPhone alarm and sleep tracker: the iOS Clock rings, Shortcuts log the night offline, a Cloudflare Worker keeps the data, a Vue 3 PWA shows the trends."
+  fr: "Un réveil et suivi du sommeil pour iPhone : l'Horloge iOS sonne, Raccourcis note la nuit hors ligne, un Worker Cloudflare garde les données, une PWA Vue 3 affiche les tendances."
+hasLanding: true
