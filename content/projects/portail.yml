@@ -1,6 +1,7 @@
 key: portail
 num: "01"
 title: Portail Autoentrepreneur
+image: /images/portail-hero.webp
 stack:
   - Vue 3
   - TypeScript

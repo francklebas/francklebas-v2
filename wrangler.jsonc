@@ -1,15 +1,16 @@
 {
-  // Déploiement Cloudflare (Workers Static Assets) — recette.
+  // Déploiement Cloudflare (Workers Static Assets), automatique à chaque push sur main (Workers Builds).
   // Build : `bun run generate` → sert le dossier statique `.output/public`.
-  // Deploy : `bunx wrangler deploy` (crée l'enregistrement DNS du custom domain).
+  // Deploy : `npx wrangler deploy` (crée l'enregistrement DNS du custom domain).
   "name": "francklebas-v2",
   "compatibility_date": "2025-07-15",
   "assets": {
     "directory": ".output/public",
   },
-  // Domaine de recette. La zone francklebas.com doit être sur le même compte Cloudflare ;
-  // wrangler crée l'entrée DNS au premier deploy.
-  "routes": [{ "pattern": "v2.francklebas.com", "custom_domain": true }],
+  // Source de vérité des domaines : à chaque deploy, wrangler détache du Worker tout domaine absent
+  // de cette liste et supprime son enregistrement DNS. La zone francklebas.com doit être sur le
+  // même compte Cloudflare.
+  "routes": [{ "pattern": "francklebas.com", "custom_domain": true }],
   "observability": {
     "enabled": false,
   },
