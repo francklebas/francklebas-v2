@@ -1,0 +1,7 @@
+# Robots du site francklebas.com (origine). Cloudflare peut préfixer ce fichier
+# avec sa politique « Content Signals » si l'option est activée dans le tableau de bord.
+User-agent: *
+Allow: /
+Disallow: /mentions-legales
+
+Sitemap: https://francklebas.com/sitemap.xml

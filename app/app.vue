@@ -5,7 +5,16 @@ const { locale } = useI18n();
 // <html lang> suit la locale active ; <html data-palette> suit la page (cf. utils/palettes.ts).
 const route = useRoute();
 const palette = computed(() => paletteFor(route.path));
-useHead({ htmlAttrs: { lang: locale, "data-palette": palette } });
+// Une seule URL publique par page : absolue, avec slash final (celle que sert Cloudflare),
+// et les variantes /blog/<locale>/<slug> renvoient vers /blog/<slug>.
+const canonical = computed(() => {
+  const path = route.path.replace(/^\/blog\/(en|fr|sv)\//, "/blog/").replace(/\/?$/, "/");
+  return `https://francklebas.com${path}`;
+});
+useHead({
+  htmlAttrs: { lang: locale, "data-palette": palette },
+  link: [{ rel: "canonical", href: canonical, key: "canonical" }],
+});
 
 // Côté client, on pose les attributs de façon synchrone au changement de route : la View Transition
 // capture la nouvelle page dès page:finish, avant que useHead n'ait patché le DOM.

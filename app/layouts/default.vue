@@ -3,7 +3,9 @@
 <template>
   <div>
     <Menu />
-    <slot />
+    <main>
+      <slot />
+    </main>
     <Footer />
   </div>
 </template>
