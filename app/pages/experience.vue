@@ -44,25 +44,25 @@ const timeline = computed(() =>
 </template>
 
 <style lang="scss" scoped>
-.timeline-entry {
-  display: flex;
-}
+// Grille commune à toutes les entrées : la colonne des années prend la largeur
+// du libellé le plus long (« Aujourd'hui » en fr), quelle que soit la langue.
 .timeline {
+  display: grid;
+  grid-template-columns: max-content 20px 1fr;
+  column-gap: 28px;
   padding-bottom: 140px;
 }
 .timeline-entry {
-  gap: 28px;
-  padding-bottom: 48px;
+  display: contents;
 }
 .timeline-year {
-  width: 70px;
-  flex-shrink: 0;
   padding-top: 2px;
   color: var(--color-dominant-ink);
   font-size: 18px;
 }
+// Porte l'espacement entre entrées, pour que .tl-line reste continue d'une entrée à l'autre.
 .timeline-content {
-  padding-bottom: 8px;
+  padding-bottom: 56px;
 }
 .timeline-title {
   margin: 0 0 4px;

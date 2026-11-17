@@ -12,6 +12,21 @@ const caseSection = z.object({
 
 export default defineContentConfig({
   collections: {
+    // Articles : un fichier Markdown par langue (content/blog/<locale>/<slug>.md),
+    // reliés par le même `slug`.
+    blog: defineCollection({
+      type: "page",
+      source: "blog/**/*.md",
+      schema: z.object({
+        slug: z.string(),
+        locale: z.enum(["en", "fr", "sv"]),
+        date: z.string(),
+        author: z.string(),
+        image: z.string().optional(),
+        // Vignette de la liste /blog (16:9) ; à défaut, l'image hero.
+        thumb: z.string().optional(),
+      }),
+    }),
     projects: defineCollection({
       type: "data",
       source: "projects/*.yml",
