@@ -6,6 +6,9 @@ export const pagePalettes = {
   projects: "p4",
   experience: "p5",
   skills: "p2",
+  blog: "p1",
+  offres: "p5",
+  "mentions-legales": "p1",
   contact: "p1",
 } as const;
 

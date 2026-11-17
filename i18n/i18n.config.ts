@@ -1,4 +1,4 @@
-// Messages en/fr du portfolio. Structure alignée sur les clés utilisées dans app.vue.
+// Messages en/fr/sv du portfolio. Structure alignée sur les clés utilisées dans app.vue.
 export default defineI18nConfig(() => ({
   legacy: false,
   messages: {
@@ -8,6 +8,8 @@ export default defineI18nConfig(() => ({
         projects: "Projects",
         experience: "Experience",
         skills: "Skills",
+        blog: "Blog",
+        offres: "Services",
         contact: "Contact",
       },
       theme: { toggle: "Switch between dark and light theme" },
@@ -18,6 +20,7 @@ export default defineI18nConfig(() => ({
         subtitle:
           "Designing frontend architecture for high-traffic products since 2008. Vue, React, TypeScript.",
         viewProjects: "View projects",
+        viewOffers: "App stuck? See my offers",
       },
       cta: { downloadCV: "Download CV" },
       home: {
@@ -37,7 +40,8 @@ export default defineI18nConfig(() => ({
         selectedWork: "02 — SELECTED WORK",
         career: "03 — CAREER",
         craft: "04 — CRAFT",
-        contactEyebrow: "05 — CONTACT",
+        writingEyebrow: "05 — WRITING",
+        contactEyebrow: "07 — CONTACT",
         projects: "Projects",
         experience: "Experience",
         skills: "Skills & stack",
@@ -88,6 +92,12 @@ export default defineI18nConfig(() => ({
         phone: "Phone",
         elsewhere: "Elsewhere",
       },
+      blog: {
+        title: "Blog",
+        allPosts: "All posts",
+        readPost: "Read",
+        contactCta: "Get in touch",
+      },
     },
     fr: {
       nav: {
@@ -95,6 +105,8 @@ export default defineI18nConfig(() => ({
         projects: "Projets",
         experience: "Expérience",
         skills: "Compétences",
+        blog: "Blog",
+        offres: "Offres",
         contact: "Contact",
       },
       theme: { toggle: "Basculer entre thème sombre et clair" },
@@ -105,6 +117,7 @@ export default defineI18nConfig(() => ({
         subtitle:
           "Je conçois des architectures frontend pour des produits à fort trafic depuis 2008. Vue, React, TypeScript.",
         viewProjects: "Voir les projets",
+        viewOffers: "App bloquée ? Voir les offres",
       },
       cta: { downloadCV: "Télécharger le CV" },
       home: {
@@ -124,7 +137,8 @@ export default defineI18nConfig(() => ({
         selectedWork: "02 — TRAVAUX CHOISIS",
         career: "03 — PARCOURS",
         craft: "04 — SAVOIR-FAIRE",
-        contactEyebrow: "05 — CONTACT",
+        writingEyebrow: "05 — ÉCRITS",
+        contactEyebrow: "07 — CONTACT",
         projects: "Projets",
         experience: "Expérience",
         skills: "Compétences & stack",
@@ -174,6 +188,109 @@ export default defineI18nConfig(() => ({
         email: "E-mail",
         phone: "Téléphone",
         elsewhere: "Ailleurs",
+      },
+      blog: {
+        title: "Blog",
+        allPosts: "Tous les articles",
+        readPost: "Lire",
+        contactCta: "Me contacter",
+      },
+    },
+    sv: {
+      nav: {
+        home: "Hem",
+        projects: "Projekt",
+        experience: "Erfarenhet",
+        skills: "Kompetenser",
+        blog: "Blogg",
+        offres: "Tjänster",
+        contact: "Kontakt",
+      },
+      theme: { toggle: "Växla mellan mörkt och ljust tema" },
+      hero: {
+        eyebrow: "FRONTENDARKITEKT — MARSEILLE · STOCKHOLM · BORDEAUX",
+        headline:
+          "Gränssnitt byggda som instrument — precisa, underhållbara, gjorda för att hålla.",
+        subtitle:
+          "Jag designar frontendarkitektur för produkter med hög trafik sedan 2008. Vue, React, TypeScript.",
+        viewProjects: "Se projekten",
+        viewOffers: "Fastnat med appen? Se mina tjänster",
+      },
+      cta: { downloadCV: "Ladda ner CV" },
+      home: {
+        whatIdoHeading: "Vad jag gör",
+        whatIdoBody:
+          "Jag designar och bygger frontendarkitekturer för produkter som måste kunna skalas. Mitt fokus: prestanda, genomtänkta komponenter och kod som håller över tid.",
+        stack: "Verktyg & teknik",
+        solvedEyebrow: "LÖSTA PROBLEM",
+        solvedHeading: "Vad jag byggt, och varför",
+        problem: "Problem",
+        solution: "Lösning",
+        result: "Resultat",
+        readCaseStudy: "Läs fallstudien",
+        allProjects: "Alla projekt",
+      },
+      sections: {
+        selectedWork: "02 — UTVALDA ARBETEN",
+        career: "03 — KARRIÄR",
+        craft: "04 — HANTVERK",
+        writingEyebrow: "05 — TEXTER",
+        contactEyebrow: "07 — KONTAKT",
+        projects: "Projekt",
+        experience: "Erfarenhet",
+        skills: "Kompetenser & stack",
+        letsTalk: "Hör av dig",
+      },
+      timeline: {
+        nowLabel: "Nu",
+        y2008: {
+          role: "Första stegen på webben",
+          company: "Frilans",
+          desc: "Började bygga webbplatser — HTML, CSS, jQuery och massor av nyfikenhet.",
+        },
+        y2013: {
+          role: "Frontendutvecklare",
+          company: "Digitala byråer",
+          desc: "Flera år av webbplatser och webbapplikationer åt kunder, från jQuery till komponentbaserade ramverk.",
+        },
+        y2018: {
+          role: "Frontendingenjör",
+          company: "FDJ (Française des Jeux)",
+          desc: "Gränssnitt med hög trafik för en nationell spelplattform. React, NestJS.",
+        },
+        y2022: {
+          role: "Frontendarkitekt",
+          company: "portail-autoentrepreneur.fr",
+          desc: "Frontendarkitektur för en plattform med över 500 000 användare. Vue 3, TypeScript, SCSS.",
+        },
+        y2024: {
+          role: "Skapare",
+          company: "AURORA Commerce",
+          desc: "Headless e-handelsmall i Nuxt 4 ovanpå Shopify.",
+        },
+        now: {
+          role: "Öppen källkod & frilans",
+          company: "LLM Review Framework",
+          desc: "Utvecklar ett verktyg för kodgranskning med LLM som pre-commit-hook, kompatibelt med valfri LLM-leverantör.",
+        },
+      },
+      skills: {
+        core: "Grunder",
+        meta: "Metaramverk",
+        styling: "Styling",
+        runtime: "Runtime",
+        writing: "Artiklar",
+      },
+      contact: {
+        email: "E-post",
+        phone: "Telefon",
+        elsewhere: "På andra ställen",
+      },
+      blog: {
+        title: "Blogg",
+        allPosts: "Alla inlägg",
+        readPost: "Läs",
+        contactCta: "Kontakta mig",
       },
     },
   },

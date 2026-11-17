@@ -90,7 +90,10 @@ const highlights = computed(() =>
           43.2965° N, 5.3698° E
         </div>
         <div class="actions">
-          <NuxtLink to="/projects" class="button button-primary">
+          <NuxtLink to="/offres" class="button button-primary">
+            {{ $t("hero.viewOffers") }}
+          </NuxtLink>
+          <NuxtLink to="/projects" class="button button-secondary">
             {{ $t("hero.viewProjects") }}
           </NuxtLink>
           <a :href="cvUrl" download class="button button-secondary">{{

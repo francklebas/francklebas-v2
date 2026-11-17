@@ -1,11 +1,14 @@
 <script setup lang="ts">
 const { locale, setLocale } = useI18n();
+const locales = ["en", "fr", "sv"] as const;
 const nav = [
   { id: "accueil", key: "", num: "01" },
   { id: "projets", key: "projects", num: "02" },
   { id: "experience", key: "experience", num: "03" },
   { id: "competences", key: "skills", num: "04" },
-  { id: "contact", key: "contact", num: "05" },
+  { id: "blog", key: "blog", num: "05" },
+  { id: "offres", key: "offres", num: "06" },
+  { id: "contact", key: "contact", num: "07" },
 ] as const;
 </script>
 
@@ -16,33 +19,27 @@ const nav = [
       <span class="brand-name">FRANCK LEBAS</span>
       <div class="nav-list">
         <NuxtLink
-          v-for="(n, index) in nav"
+          v-for="n in nav"
           :key="n.id"
           :to="`${n.key === '' ? '/' : `/${n.key}`}`"
           class="nav-item"
         >
           <span class="nav-number">{{ n.num }}</span
-          >{{ index === 0 ? "Accueil" : $t(`nav.${n.key}`) }}
+          >{{ $t(`nav.${n.key || "home"}`) }}
         </NuxtLink>
 
         <div class="locale-switcher">
-          <button
-            class="nav-item locale-button"
-            :class="{ 'is-active': locale === 'en' }"
-            type="button"
-            @click="setLocale('en')"
-          >
-            EN
-          </button>
-          <span class="locale-separator">/</span>
-          <button
-            class="nav-item locale-button"
-            :class="{ 'is-active': locale === 'fr' }"
-            type="button"
-            @click="setLocale('fr')"
-          >
-            FR
-          </button>
+          <template v-for="(code, i) in locales" :key="code">
+            <span v-if="i > 0" class="locale-separator">/</span>
+            <button
+              class="nav-item locale-button"
+              :class="{ 'is-active': locale === code }"
+              type="button"
+              @click="setLocale(code)"
+            >
+              {{ code.toUpperCase() }}
+            </button>
+          </template>
         </div>
 
         <ThemeToggle class="theme-toggle-nav" />
